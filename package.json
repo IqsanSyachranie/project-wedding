@@ -1,0 +1,28 @@
+{
+  "name": "project-wedding",
+  "version": "1.0.0",
+  "description": "Project Dynamic Single-Page Untuk Undangan Pernikahan with CMS Angular, Express, Prisma ORM, dan MySQL",
+  "main": "index.js",
+  "scripts": {
+    "--- RUN PROJECT ---": "",
+    "dev:fe": "cd client && bun x ng serve",
+    "dev:be": "cd server && bun index.ts",
+    "dev": "bun x concurrently \"npm run dev:fe\" \"npm run dev:be\"",
+
+    "--- PRISMA COMMANDS ---": "",
+    "db:push": "cd server && bun x prisma db push",
+    "db:pull": "cd server && bun x prisma db pull",
+    "db:gen": "cd server && bun x prisma generate",
+    "db:init": "cd server && bun x prisma db pull && bun x prisma generate",
+    
+    "--- AGENTIC ---": "",
+    "agent:scan": "bmad analyze ."
+  },
+  "keywords": [],
+  "author": "Iqsan Syachranie",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
