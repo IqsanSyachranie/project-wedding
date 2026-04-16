@@ -4,16 +4,21 @@
   "description": "Project Dynamic Single-Page Untuk Undangan Pernikahan with CMS Angular, Express, Prisma ORM, dan MySQL",
   "main": "index.js",
   "scripts": {
+    "--- INSTALL PROJECT ---": "",
+    "install:fe": "cd frontend && bun install",
+    "install:be": "cd backend && bun install",
+    "install": "bun x concurrently \"npm run install:fe\" \"npm run install:be\"",
+    
     "--- RUN PROJECT ---": "",
-    "dev:fe": "cd client && bun x ng serve",
-    "dev:be": "cd server && bun index.ts",
+    "dev:fe": "cd frontend && bun x ng serve",
+    "dev:be": "cd backend && bun index.ts",
     "dev": "bun x concurrently \"npm run dev:fe\" \"npm run dev:be\"",
 
     "--- PRISMA COMMANDS ---": "",
-    "db:push": "cd server && bun x prisma db push",
-    "db:pull": "cd server && bun x prisma db pull",
-    "db:gen": "cd server && bun x prisma generate",
-    "db:init": "cd server && bun x prisma db pull && bun x prisma generate",
+    "db:push": "cd backend && bun x prisma db push",
+    "db:pull": "cd backend && bun x prisma db pull",
+    "db:gen": "cd backend && bun x prisma generate",
+    "db:init": "cd backend && bun x prisma db pull && bun x prisma generate",
     
     "--- AGENTIC ---": "",
     "agent:scan": "bmad analyze ."
