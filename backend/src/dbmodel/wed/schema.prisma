@@ -1,0 +1,12 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/dbmodel/wed"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model init_table {
+  id Int @id @default(autoincrement())
+}

@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "target": "ES2023",
-    "types": ["node"],
+    "target": "es6",
+    "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "ignoreDeprecations": "6.0"
-  }
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist"
+  },
+  "include": ["**/*.ts", "src/dbmodel/master.model.js"],
+  "exclude": ["node_modules"]
 }

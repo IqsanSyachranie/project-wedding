@@ -8,18 +8,15 @@
     "install:fe": "cd frontend && bun install",
     "install:be": "cd backend && bun install",
     "install": "bun x concurrently \"npm run install:fe\" \"npm run install:be\"",
-    
     "--- RUN PROJECT ---": "",
     "dev:fe": "cd frontend && bun x ng serve",
-    "dev:be": "cd backend && bun index.ts",
+    "dev:be": "cd backend && nodemon --exec bun run src/app.ts",
     "dev": "bun x concurrently \"npm run dev:fe\" \"npm run dev:be\"",
-
     "--- PRISMA COMMANDS ---": "",
     "db:push": "cd backend && bun x prisma db push",
     "db:pull": "cd backend && bun x prisma db pull",
     "db:gen": "cd backend && bun x prisma generate",
     "db:init": "cd backend && bun x prisma db pull && bun x prisma generate",
-    
     "--- AGENTIC ---": "",
     "agent:scan": "bmad analyze ."
   },
@@ -28,6 +25,7 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.14"
   }
 }
