@@ -6,10 +6,11 @@ import cookieParser from 'cookie-parser';
 import "dotenv/config";
 
 import healthRoutes from "./routes/health.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 import { authSession } from "./middleware/auth-session.js";
 import { doubleCsrfProtection, invalidCsrfTokenError } from "./middleware/csrf-protection.js";
 
-const app = express();
+export const app = express();
 
 // 1. Security Headers
 app.use(helmet({
@@ -46,6 +47,7 @@ app.use(express.static('public')); // Simplified static path for reliability in 
 
 // Routes
 app.use("/api/v1/health", healthRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 // 404 Handler
 app.use((_req, res) => {

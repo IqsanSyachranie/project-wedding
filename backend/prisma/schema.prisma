@@ -7,6 +7,10 @@ datasource db {
   provider = "mysql"
 }
 
-model init_table {
-  id Int @id @default(autoincrement())
+model AdminUser {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

@@ -14,10 +14,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model init_table
+ * Model AdminUser
  * 
  */
-export type init_table = $Result.DefaultSelection<Prisma.$init_tablePayload>
+export type AdminUser = $Result.DefaultSelection<Prisma.$AdminUserPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -28,8 +28,8 @@ export type init_table = $Result.DefaultSelection<Prisma.$init_tablePayload>
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Init_tables
- * const init_tables = await prisma.init_table.findMany()
+ * // Fetch zero or more AdminUsers
+ * const adminUsers = await prisma.adminUser.findMany()
  * ```
  *
  *
@@ -51,8 +51,8 @@ export class PrismaClient<
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more Init_tables
-   * const init_tables = await prisma.init_table.findMany()
+   * // Fetch zero or more AdminUsers
+   * const adminUsers = await prisma.adminUser.findMany()
    * ```
    *
    *
@@ -141,14 +141,14 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.init_table`: Exposes CRUD operations for the **init_table** model.
+   * `prisma.adminUser`: Exposes CRUD operations for the **AdminUser** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Init_tables
-    * const init_tables = await prisma.init_table.findMany()
+    * // Fetch zero or more AdminUsers
+    * const adminUsers = await prisma.adminUser.findMany()
     * ```
     */
-  get init_table(): Prisma.init_tableDelegate<ExtArgs, ClientOptions>;
+  get adminUser(): Prisma.AdminUserDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -583,7 +583,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    init_table: 'init_table'
+    AdminUser: 'AdminUser'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -599,73 +599,73 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "init_table"
+      modelProps: "adminUser"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      init_table: {
-        payload: Prisma.$init_tablePayload<ExtArgs>
-        fields: Prisma.init_tableFieldRefs
+      AdminUser: {
+        payload: Prisma.$AdminUserPayload<ExtArgs>
+        fields: Prisma.AdminUserFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.init_tableFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$init_tablePayload> | null
+            args: Prisma.AdminUserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.init_tableFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$init_tablePayload>
+            args: Prisma.AdminUserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>
           }
           findFirst: {
-            args: Prisma.init_tableFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$init_tablePayload> | null
+            args: Prisma.AdminUserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.init_tableFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$init_tablePayload>
+            args: Prisma.AdminUserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>
           }
           findMany: {
-            args: Prisma.init_tableFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$init_tablePayload>[]
+            args: Prisma.AdminUserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>[]
           }
           create: {
-            args: Prisma.init_tableCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$init_tablePayload>
+            args: Prisma.AdminUserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>
           }
           createMany: {
-            args: Prisma.init_tableCreateManyArgs<ExtArgs>
+            args: Prisma.AdminUserCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.init_tableDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$init_tablePayload>
+            args: Prisma.AdminUserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>
           }
           update: {
-            args: Prisma.init_tableUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$init_tablePayload>
+            args: Prisma.AdminUserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>
           }
           deleteMany: {
-            args: Prisma.init_tableDeleteManyArgs<ExtArgs>
+            args: Prisma.AdminUserDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.init_tableUpdateManyArgs<ExtArgs>
+            args: Prisma.AdminUserUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.init_tableUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$init_tablePayload>
+            args: Prisma.AdminUserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>
           }
           aggregate: {
-            args: Prisma.Init_tableAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateInit_table>
+            args: Prisma.AdminUserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAdminUser>
           }
           groupBy: {
-            args: Prisma.init_tableGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Init_tableGroupByOutputType>[]
+            args: Prisma.AdminUserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AdminUserGroupByOutputType>[]
           }
           count: {
-            args: Prisma.init_tableCountArgs<ExtArgs>
-            result: $Utils.Optional<Init_tableCountAggregateOutputType> | number
+            args: Prisma.AdminUserCountArgs<ExtArgs>
+            result: $Utils.Optional<AdminUserCountAggregateOutputType> | number
           }
         }
       }
@@ -777,7 +777,7 @@ export namespace Prisma {
     comments?: runtime.SqlCommenterPlugin[]
   }
   export type GlobalOmitConfig = {
-    init_table?: init_tableOmit
+    adminUser?: AdminUserOmit
   }
 
   /* Types for Logging */
@@ -859,323 +859,363 @@ export namespace Prisma {
    */
 
   /**
-   * Model init_table
+   * Model AdminUser
    */
 
-  export type AggregateInit_table = {
-    _count: Init_tableCountAggregateOutputType | null
-    _avg: Init_tableAvgAggregateOutputType | null
-    _sum: Init_tableSumAggregateOutputType | null
-    _min: Init_tableMinAggregateOutputType | null
-    _max: Init_tableMaxAggregateOutputType | null
+  export type AggregateAdminUser = {
+    _count: AdminUserCountAggregateOutputType | null
+    _avg: AdminUserAvgAggregateOutputType | null
+    _sum: AdminUserSumAggregateOutputType | null
+    _min: AdminUserMinAggregateOutputType | null
+    _max: AdminUserMaxAggregateOutputType | null
   }
 
-  export type Init_tableAvgAggregateOutputType = {
+  export type AdminUserAvgAggregateOutputType = {
     id: number | null
   }
 
-  export type Init_tableSumAggregateOutputType = {
+  export type AdminUserSumAggregateOutputType = {
     id: number | null
   }
 
-  export type Init_tableMinAggregateOutputType = {
+  export type AdminUserMinAggregateOutputType = {
     id: number | null
+    username: string | null
+    password: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type Init_tableMaxAggregateOutputType = {
+  export type AdminUserMaxAggregateOutputType = {
     id: number | null
+    username: string | null
+    password: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type Init_tableCountAggregateOutputType = {
+  export type AdminUserCountAggregateOutputType = {
     id: number
+    username: number
+    password: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
-  export type Init_tableAvgAggregateInputType = {
+  export type AdminUserAvgAggregateInputType = {
     id?: true
   }
 
-  export type Init_tableSumAggregateInputType = {
+  export type AdminUserSumAggregateInputType = {
     id?: true
   }
 
-  export type Init_tableMinAggregateInputType = {
+  export type AdminUserMinAggregateInputType = {
     id?: true
+    username?: true
+    password?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
-  export type Init_tableMaxAggregateInputType = {
+  export type AdminUserMaxAggregateInputType = {
     id?: true
+    username?: true
+    password?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
-  export type Init_tableCountAggregateInputType = {
+  export type AdminUserCountAggregateInputType = {
     id?: true
+    username?: true
+    password?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
-  export type Init_tableAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which init_table to aggregate.
+     * Filter which AdminUser to aggregate.
      */
-    where?: init_tableWhereInput
+    where?: AdminUserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of init_tables to fetch.
+     * Determine the order of AdminUsers to fetch.
      */
-    orderBy?: init_tableOrderByWithRelationInput | init_tableOrderByWithRelationInput[]
+    orderBy?: AdminUserOrderByWithRelationInput | AdminUserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: init_tableWhereUniqueInput
+    cursor?: AdminUserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` init_tables from the position of the cursor.
+     * Take `±n` AdminUsers from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` init_tables.
+     * Skip the first `n` AdminUsers.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned init_tables
+     * Count returned AdminUsers
     **/
-    _count?: true | Init_tableCountAggregateInputType
+    _count?: true | AdminUserCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: Init_tableAvgAggregateInputType
+    _avg?: AdminUserAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: Init_tableSumAggregateInputType
+    _sum?: AdminUserSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: Init_tableMinAggregateInputType
+    _min?: AdminUserMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: Init_tableMaxAggregateInputType
+    _max?: AdminUserMaxAggregateInputType
   }
 
-  export type GetInit_tableAggregateType<T extends Init_tableAggregateArgs> = {
-        [P in keyof T & keyof AggregateInit_table]: P extends '_count' | 'count'
+  export type GetAdminUserAggregateType<T extends AdminUserAggregateArgs> = {
+        [P in keyof T & keyof AggregateAdminUser]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateInit_table[P]>
-      : GetScalarType<T[P], AggregateInit_table[P]>
+        : GetScalarType<T[P], AggregateAdminUser[P]>
+      : GetScalarType<T[P], AggregateAdminUser[P]>
   }
 
 
 
 
-  export type init_tableGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: init_tableWhereInput
-    orderBy?: init_tableOrderByWithAggregationInput | init_tableOrderByWithAggregationInput[]
-    by: Init_tableScalarFieldEnum[] | Init_tableScalarFieldEnum
-    having?: init_tableScalarWhereWithAggregatesInput
+  export type AdminUserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdminUserWhereInput
+    orderBy?: AdminUserOrderByWithAggregationInput | AdminUserOrderByWithAggregationInput[]
+    by: AdminUserScalarFieldEnum[] | AdminUserScalarFieldEnum
+    having?: AdminUserScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: Init_tableCountAggregateInputType | true
-    _avg?: Init_tableAvgAggregateInputType
-    _sum?: Init_tableSumAggregateInputType
-    _min?: Init_tableMinAggregateInputType
-    _max?: Init_tableMaxAggregateInputType
+    _count?: AdminUserCountAggregateInputType | true
+    _avg?: AdminUserAvgAggregateInputType
+    _sum?: AdminUserSumAggregateInputType
+    _min?: AdminUserMinAggregateInputType
+    _max?: AdminUserMaxAggregateInputType
   }
 
-  export type Init_tableGroupByOutputType = {
+  export type AdminUserGroupByOutputType = {
     id: number
-    _count: Init_tableCountAggregateOutputType | null
-    _avg: Init_tableAvgAggregateOutputType | null
-    _sum: Init_tableSumAggregateOutputType | null
-    _min: Init_tableMinAggregateOutputType | null
-    _max: Init_tableMaxAggregateOutputType | null
+    username: string
+    password: string
+    createdAt: Date
+    updatedAt: Date
+    _count: AdminUserCountAggregateOutputType | null
+    _avg: AdminUserAvgAggregateOutputType | null
+    _sum: AdminUserSumAggregateOutputType | null
+    _min: AdminUserMinAggregateOutputType | null
+    _max: AdminUserMaxAggregateOutputType | null
   }
 
-  type GetInit_tableGroupByPayload<T extends init_tableGroupByArgs> = Prisma.PrismaPromise<
+  type GetAdminUserGroupByPayload<T extends AdminUserGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<Init_tableGroupByOutputType, T['by']> &
+      PickEnumerable<AdminUserGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof Init_tableGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof AdminUserGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], Init_tableGroupByOutputType[P]>
-            : GetScalarType<T[P], Init_tableGroupByOutputType[P]>
+              : GetScalarType<T[P], AdminUserGroupByOutputType[P]>
+            : GetScalarType<T[P], AdminUserGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type init_tableSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type AdminUserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-  }, ExtArgs["result"]["init_table"]>
+    username?: boolean
+    password?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["adminUser"]>
 
 
 
-  export type init_tableSelectScalar = {
+  export type AdminUserSelectScalar = {
     id?: boolean
+    username?: boolean
+    password?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type init_tableOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id", ExtArgs["result"]["init_table"]>
+  export type AdminUserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["adminUser"]>
 
-  export type $init_tablePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "init_table"
+  export type $AdminUserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AdminUser"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-    }, ExtArgs["result"]["init_table"]>
+      username: string
+      password: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["adminUser"]>
     composites: {}
   }
 
-  type init_tableGetPayload<S extends boolean | null | undefined | init_tableDefaultArgs> = $Result.GetResult<Prisma.$init_tablePayload, S>
+  type AdminUserGetPayload<S extends boolean | null | undefined | AdminUserDefaultArgs> = $Result.GetResult<Prisma.$AdminUserPayload, S>
 
-  type init_tableCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<init_tableFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Init_tableCountAggregateInputType | true
+  type AdminUserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AdminUserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AdminUserCountAggregateInputType | true
     }
 
-  export interface init_tableDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['init_table'], meta: { name: 'init_table' } }
+  export interface AdminUserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AdminUser'], meta: { name: 'AdminUser' } }
     /**
-     * Find zero or one Init_table that matches the filter.
-     * @param {init_tableFindUniqueArgs} args - Arguments to find a Init_table
+     * Find zero or one AdminUser that matches the filter.
+     * @param {AdminUserFindUniqueArgs} args - Arguments to find a AdminUser
      * @example
-     * // Get one Init_table
-     * const init_table = await prisma.init_table.findUnique({
+     * // Get one AdminUser
+     * const adminUser = await prisma.adminUser.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends init_tableFindUniqueArgs>(args: SelectSubset<T, init_tableFindUniqueArgs<ExtArgs>>): Prisma__init_tableClient<$Result.GetResult<Prisma.$init_tablePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends AdminUserFindUniqueArgs>(args: SelectSubset<T, AdminUserFindUniqueArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Init_table that matches the filter or throw an error with `error.code='P2025'`
+     * Find one AdminUser that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {init_tableFindUniqueOrThrowArgs} args - Arguments to find a Init_table
+     * @param {AdminUserFindUniqueOrThrowArgs} args - Arguments to find a AdminUser
      * @example
-     * // Get one Init_table
-     * const init_table = await prisma.init_table.findUniqueOrThrow({
+     * // Get one AdminUser
+     * const adminUser = await prisma.adminUser.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends init_tableFindUniqueOrThrowArgs>(args: SelectSubset<T, init_tableFindUniqueOrThrowArgs<ExtArgs>>): Prisma__init_tableClient<$Result.GetResult<Prisma.$init_tablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends AdminUserFindUniqueOrThrowArgs>(args: SelectSubset<T, AdminUserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Init_table that matches the filter.
+     * Find the first AdminUser that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {init_tableFindFirstArgs} args - Arguments to find a Init_table
+     * @param {AdminUserFindFirstArgs} args - Arguments to find a AdminUser
      * @example
-     * // Get one Init_table
-     * const init_table = await prisma.init_table.findFirst({
+     * // Get one AdminUser
+     * const adminUser = await prisma.adminUser.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends init_tableFindFirstArgs>(args?: SelectSubset<T, init_tableFindFirstArgs<ExtArgs>>): Prisma__init_tableClient<$Result.GetResult<Prisma.$init_tablePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends AdminUserFindFirstArgs>(args?: SelectSubset<T, AdminUserFindFirstArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Init_table that matches the filter or
+     * Find the first AdminUser that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {init_tableFindFirstOrThrowArgs} args - Arguments to find a Init_table
+     * @param {AdminUserFindFirstOrThrowArgs} args - Arguments to find a AdminUser
      * @example
-     * // Get one Init_table
-     * const init_table = await prisma.init_table.findFirstOrThrow({
+     * // Get one AdminUser
+     * const adminUser = await prisma.adminUser.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends init_tableFindFirstOrThrowArgs>(args?: SelectSubset<T, init_tableFindFirstOrThrowArgs<ExtArgs>>): Prisma__init_tableClient<$Result.GetResult<Prisma.$init_tablePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends AdminUserFindFirstOrThrowArgs>(args?: SelectSubset<T, AdminUserFindFirstOrThrowArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Init_tables that matches the filter.
+     * Find zero or more AdminUsers that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {init_tableFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {AdminUserFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Init_tables
-     * const init_tables = await prisma.init_table.findMany()
+     * // Get all AdminUsers
+     * const adminUsers = await prisma.adminUser.findMany()
      * 
-     * // Get first 10 Init_tables
-     * const init_tables = await prisma.init_table.findMany({ take: 10 })
+     * // Get first 10 AdminUsers
+     * const adminUsers = await prisma.adminUser.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const init_tableWithIdOnly = await prisma.init_table.findMany({ select: { id: true } })
+     * const adminUserWithIdOnly = await prisma.adminUser.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends init_tableFindManyArgs>(args?: SelectSubset<T, init_tableFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$init_tablePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends AdminUserFindManyArgs>(args?: SelectSubset<T, AdminUserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Init_table.
-     * @param {init_tableCreateArgs} args - Arguments to create a Init_table.
+     * Create a AdminUser.
+     * @param {AdminUserCreateArgs} args - Arguments to create a AdminUser.
      * @example
-     * // Create one Init_table
-     * const Init_table = await prisma.init_table.create({
+     * // Create one AdminUser
+     * const AdminUser = await prisma.adminUser.create({
      *   data: {
-     *     // ... data to create a Init_table
+     *     // ... data to create a AdminUser
      *   }
      * })
      * 
      */
-    create<T extends init_tableCreateArgs>(args: SelectSubset<T, init_tableCreateArgs<ExtArgs>>): Prisma__init_tableClient<$Result.GetResult<Prisma.$init_tablePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends AdminUserCreateArgs>(args: SelectSubset<T, AdminUserCreateArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Init_tables.
-     * @param {init_tableCreateManyArgs} args - Arguments to create many Init_tables.
+     * Create many AdminUsers.
+     * @param {AdminUserCreateManyArgs} args - Arguments to create many AdminUsers.
      * @example
-     * // Create many Init_tables
-     * const init_table = await prisma.init_table.createMany({
+     * // Create many AdminUsers
+     * const adminUser = await prisma.adminUser.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends init_tableCreateManyArgs>(args?: SelectSubset<T, init_tableCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends AdminUserCreateManyArgs>(args?: SelectSubset<T, AdminUserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Init_table.
-     * @param {init_tableDeleteArgs} args - Arguments to delete one Init_table.
+     * Delete a AdminUser.
+     * @param {AdminUserDeleteArgs} args - Arguments to delete one AdminUser.
      * @example
-     * // Delete one Init_table
-     * const Init_table = await prisma.init_table.delete({
+     * // Delete one AdminUser
+     * const AdminUser = await prisma.adminUser.delete({
      *   where: {
-     *     // ... filter to delete one Init_table
+     *     // ... filter to delete one AdminUser
      *   }
      * })
      * 
      */
-    delete<T extends init_tableDeleteArgs>(args: SelectSubset<T, init_tableDeleteArgs<ExtArgs>>): Prisma__init_tableClient<$Result.GetResult<Prisma.$init_tablePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends AdminUserDeleteArgs>(args: SelectSubset<T, AdminUserDeleteArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Init_table.
-     * @param {init_tableUpdateArgs} args - Arguments to update one Init_table.
+     * Update one AdminUser.
+     * @param {AdminUserUpdateArgs} args - Arguments to update one AdminUser.
      * @example
-     * // Update one Init_table
-     * const init_table = await prisma.init_table.update({
+     * // Update one AdminUser
+     * const adminUser = await prisma.adminUser.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1185,30 +1225,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends init_tableUpdateArgs>(args: SelectSubset<T, init_tableUpdateArgs<ExtArgs>>): Prisma__init_tableClient<$Result.GetResult<Prisma.$init_tablePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends AdminUserUpdateArgs>(args: SelectSubset<T, AdminUserUpdateArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Init_tables.
-     * @param {init_tableDeleteManyArgs} args - Arguments to filter Init_tables to delete.
+     * Delete zero or more AdminUsers.
+     * @param {AdminUserDeleteManyArgs} args - Arguments to filter AdminUsers to delete.
      * @example
-     * // Delete a few Init_tables
-     * const { count } = await prisma.init_table.deleteMany({
+     * // Delete a few AdminUsers
+     * const { count } = await prisma.adminUser.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends init_tableDeleteManyArgs>(args?: SelectSubset<T, init_tableDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends AdminUserDeleteManyArgs>(args?: SelectSubset<T, AdminUserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Init_tables.
+     * Update zero or more AdminUsers.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {init_tableUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {AdminUserUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Init_tables
-     * const init_table = await prisma.init_table.updateMany({
+     * // Update many AdminUsers
+     * const adminUser = await prisma.adminUser.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1218,56 +1258,56 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends init_tableUpdateManyArgs>(args: SelectSubset<T, init_tableUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends AdminUserUpdateManyArgs>(args: SelectSubset<T, AdminUserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Init_table.
-     * @param {init_tableUpsertArgs} args - Arguments to update or create a Init_table.
+     * Create or update one AdminUser.
+     * @param {AdminUserUpsertArgs} args - Arguments to update or create a AdminUser.
      * @example
-     * // Update or create a Init_table
-     * const init_table = await prisma.init_table.upsert({
+     * // Update or create a AdminUser
+     * const adminUser = await prisma.adminUser.upsert({
      *   create: {
-     *     // ... data to create a Init_table
+     *     // ... data to create a AdminUser
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Init_table we want to update
+     *     // ... the filter for the AdminUser we want to update
      *   }
      * })
      */
-    upsert<T extends init_tableUpsertArgs>(args: SelectSubset<T, init_tableUpsertArgs<ExtArgs>>): Prisma__init_tableClient<$Result.GetResult<Prisma.$init_tablePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends AdminUserUpsertArgs>(args: SelectSubset<T, AdminUserUpsertArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Init_tables.
+     * Count the number of AdminUsers.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {init_tableCountArgs} args - Arguments to filter Init_tables to count.
+     * @param {AdminUserCountArgs} args - Arguments to filter AdminUsers to count.
      * @example
-     * // Count the number of Init_tables
-     * const count = await prisma.init_table.count({
+     * // Count the number of AdminUsers
+     * const count = await prisma.adminUser.count({
      *   where: {
-     *     // ... the filter for the Init_tables we want to count
+     *     // ... the filter for the AdminUsers we want to count
      *   }
      * })
     **/
-    count<T extends init_tableCountArgs>(
-      args?: Subset<T, init_tableCountArgs>,
+    count<T extends AdminUserCountArgs>(
+      args?: Subset<T, AdminUserCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], Init_tableCountAggregateOutputType>
+          : GetScalarType<T['select'], AdminUserCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Init_table.
+     * Allows you to perform aggregations operations on a AdminUser.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Init_tableAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {AdminUserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1287,13 +1327,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends Init_tableAggregateArgs>(args: Subset<T, Init_tableAggregateArgs>): Prisma.PrismaPromise<GetInit_tableAggregateType<T>>
+    aggregate<T extends AdminUserAggregateArgs>(args: Subset<T, AdminUserAggregateArgs>): Prisma.PrismaPromise<GetAdminUserAggregateType<T>>
 
     /**
-     * Group by Init_table.
+     * Group by AdminUser.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {init_tableGroupByArgs} args - Group by arguments.
+     * @param {AdminUserGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1308,14 +1348,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends init_tableGroupByArgs,
+      T extends AdminUserGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: init_tableGroupByArgs['orderBy'] }
-        : { orderBy?: init_tableGroupByArgs['orderBy'] },
+        ? { orderBy: AdminUserGroupByArgs['orderBy'] }
+        : { orderBy?: AdminUserGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1364,20 +1404,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, init_tableGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInit_tableGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, AdminUserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdminUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the init_table model
+   * Fields of the AdminUser model
    */
-  readonly fields: init_tableFieldRefs;
+  readonly fields: AdminUserFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for init_table.
+   * The delegate class that acts as a "Promise-like" for AdminUser.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__init_tableClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__AdminUserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1405,333 +1445,337 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the init_table model
+   * Fields of the AdminUser model
    */
-  interface init_tableFieldRefs {
-    readonly id: FieldRef<"init_table", 'Int'>
+  interface AdminUserFieldRefs {
+    readonly id: FieldRef<"AdminUser", 'Int'>
+    readonly username: FieldRef<"AdminUser", 'String'>
+    readonly password: FieldRef<"AdminUser", 'String'>
+    readonly createdAt: FieldRef<"AdminUser", 'DateTime'>
+    readonly updatedAt: FieldRef<"AdminUser", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * init_table findUnique
+   * AdminUser findUnique
    */
-  export type init_tableFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the init_table
+     * Select specific fields to fetch from the AdminUser
      */
-    select?: init_tableSelect<ExtArgs> | null
+    select?: AdminUserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the init_table
+     * Omit specific fields from the AdminUser
      */
-    omit?: init_tableOmit<ExtArgs> | null
+    omit?: AdminUserOmit<ExtArgs> | null
     /**
-     * Filter, which init_table to fetch.
+     * Filter, which AdminUser to fetch.
      */
-    where: init_tableWhereUniqueInput
+    where: AdminUserWhereUniqueInput
   }
 
   /**
-   * init_table findUniqueOrThrow
+   * AdminUser findUniqueOrThrow
    */
-  export type init_tableFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the init_table
+     * Select specific fields to fetch from the AdminUser
      */
-    select?: init_tableSelect<ExtArgs> | null
+    select?: AdminUserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the init_table
+     * Omit specific fields from the AdminUser
      */
-    omit?: init_tableOmit<ExtArgs> | null
+    omit?: AdminUserOmit<ExtArgs> | null
     /**
-     * Filter, which init_table to fetch.
+     * Filter, which AdminUser to fetch.
      */
-    where: init_tableWhereUniqueInput
+    where: AdminUserWhereUniqueInput
   }
 
   /**
-   * init_table findFirst
+   * AdminUser findFirst
    */
-  export type init_tableFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the init_table
+     * Select specific fields to fetch from the AdminUser
      */
-    select?: init_tableSelect<ExtArgs> | null
+    select?: AdminUserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the init_table
+     * Omit specific fields from the AdminUser
      */
-    omit?: init_tableOmit<ExtArgs> | null
+    omit?: AdminUserOmit<ExtArgs> | null
     /**
-     * Filter, which init_table to fetch.
+     * Filter, which AdminUser to fetch.
      */
-    where?: init_tableWhereInput
+    where?: AdminUserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of init_tables to fetch.
+     * Determine the order of AdminUsers to fetch.
      */
-    orderBy?: init_tableOrderByWithRelationInput | init_tableOrderByWithRelationInput[]
+    orderBy?: AdminUserOrderByWithRelationInput | AdminUserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for init_tables.
+     * Sets the position for searching for AdminUsers.
      */
-    cursor?: init_tableWhereUniqueInput
+    cursor?: AdminUserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` init_tables from the position of the cursor.
+     * Take `±n` AdminUsers from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` init_tables.
+     * Skip the first `n` AdminUsers.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of init_tables.
+     * Filter by unique combinations of AdminUsers.
      */
-    distinct?: Init_tableScalarFieldEnum | Init_tableScalarFieldEnum[]
+    distinct?: AdminUserScalarFieldEnum | AdminUserScalarFieldEnum[]
   }
 
   /**
-   * init_table findFirstOrThrow
+   * AdminUser findFirstOrThrow
    */
-  export type init_tableFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the init_table
+     * Select specific fields to fetch from the AdminUser
      */
-    select?: init_tableSelect<ExtArgs> | null
+    select?: AdminUserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the init_table
+     * Omit specific fields from the AdminUser
      */
-    omit?: init_tableOmit<ExtArgs> | null
+    omit?: AdminUserOmit<ExtArgs> | null
     /**
-     * Filter, which init_table to fetch.
+     * Filter, which AdminUser to fetch.
      */
-    where?: init_tableWhereInput
+    where?: AdminUserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of init_tables to fetch.
+     * Determine the order of AdminUsers to fetch.
      */
-    orderBy?: init_tableOrderByWithRelationInput | init_tableOrderByWithRelationInput[]
+    orderBy?: AdminUserOrderByWithRelationInput | AdminUserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for init_tables.
+     * Sets the position for searching for AdminUsers.
      */
-    cursor?: init_tableWhereUniqueInput
+    cursor?: AdminUserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` init_tables from the position of the cursor.
+     * Take `±n` AdminUsers from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` init_tables.
+     * Skip the first `n` AdminUsers.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of init_tables.
+     * Filter by unique combinations of AdminUsers.
      */
-    distinct?: Init_tableScalarFieldEnum | Init_tableScalarFieldEnum[]
+    distinct?: AdminUserScalarFieldEnum | AdminUserScalarFieldEnum[]
   }
 
   /**
-   * init_table findMany
+   * AdminUser findMany
    */
-  export type init_tableFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the init_table
+     * Select specific fields to fetch from the AdminUser
      */
-    select?: init_tableSelect<ExtArgs> | null
+    select?: AdminUserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the init_table
+     * Omit specific fields from the AdminUser
      */
-    omit?: init_tableOmit<ExtArgs> | null
+    omit?: AdminUserOmit<ExtArgs> | null
     /**
-     * Filter, which init_tables to fetch.
+     * Filter, which AdminUsers to fetch.
      */
-    where?: init_tableWhereInput
+    where?: AdminUserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of init_tables to fetch.
+     * Determine the order of AdminUsers to fetch.
      */
-    orderBy?: init_tableOrderByWithRelationInput | init_tableOrderByWithRelationInput[]
+    orderBy?: AdminUserOrderByWithRelationInput | AdminUserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing init_tables.
+     * Sets the position for listing AdminUsers.
      */
-    cursor?: init_tableWhereUniqueInput
+    cursor?: AdminUserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` init_tables from the position of the cursor.
+     * Take `±n` AdminUsers from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` init_tables.
+     * Skip the first `n` AdminUsers.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of init_tables.
+     * Filter by unique combinations of AdminUsers.
      */
-    distinct?: Init_tableScalarFieldEnum | Init_tableScalarFieldEnum[]
+    distinct?: AdminUserScalarFieldEnum | AdminUserScalarFieldEnum[]
   }
 
   /**
-   * init_table create
+   * AdminUser create
    */
-  export type init_tableCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the init_table
+     * Select specific fields to fetch from the AdminUser
      */
-    select?: init_tableSelect<ExtArgs> | null
+    select?: AdminUserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the init_table
+     * Omit specific fields from the AdminUser
      */
-    omit?: init_tableOmit<ExtArgs> | null
+    omit?: AdminUserOmit<ExtArgs> | null
     /**
-     * The data needed to create a init_table.
+     * The data needed to create a AdminUser.
      */
-    data?: XOR<init_tableCreateInput, init_tableUncheckedCreateInput>
+    data: XOR<AdminUserCreateInput, AdminUserUncheckedCreateInput>
   }
 
   /**
-   * init_table createMany
+   * AdminUser createMany
    */
-  export type init_tableCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many init_tables.
+     * The data used to create many AdminUsers.
      */
-    data: init_tableCreateManyInput | init_tableCreateManyInput[]
+    data: AdminUserCreateManyInput | AdminUserCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * init_table update
+   * AdminUser update
    */
-  export type init_tableUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the init_table
+     * Select specific fields to fetch from the AdminUser
      */
-    select?: init_tableSelect<ExtArgs> | null
+    select?: AdminUserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the init_table
+     * Omit specific fields from the AdminUser
      */
-    omit?: init_tableOmit<ExtArgs> | null
+    omit?: AdminUserOmit<ExtArgs> | null
     /**
-     * The data needed to update a init_table.
+     * The data needed to update a AdminUser.
      */
-    data: XOR<init_tableUpdateInput, init_tableUncheckedUpdateInput>
+    data: XOR<AdminUserUpdateInput, AdminUserUncheckedUpdateInput>
     /**
-     * Choose, which init_table to update.
+     * Choose, which AdminUser to update.
      */
-    where: init_tableWhereUniqueInput
+    where: AdminUserWhereUniqueInput
   }
 
   /**
-   * init_table updateMany
+   * AdminUser updateMany
    */
-  export type init_tableUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update init_tables.
+     * The data used to update AdminUsers.
      */
-    data: XOR<init_tableUpdateManyMutationInput, init_tableUncheckedUpdateManyInput>
+    data: XOR<AdminUserUpdateManyMutationInput, AdminUserUncheckedUpdateManyInput>
     /**
-     * Filter which init_tables to update
+     * Filter which AdminUsers to update
      */
-    where?: init_tableWhereInput
+    where?: AdminUserWhereInput
     /**
-     * Limit how many init_tables to update.
+     * Limit how many AdminUsers to update.
      */
     limit?: number
   }
 
   /**
-   * init_table upsert
+   * AdminUser upsert
    */
-  export type init_tableUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the init_table
+     * Select specific fields to fetch from the AdminUser
      */
-    select?: init_tableSelect<ExtArgs> | null
+    select?: AdminUserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the init_table
+     * Omit specific fields from the AdminUser
      */
-    omit?: init_tableOmit<ExtArgs> | null
+    omit?: AdminUserOmit<ExtArgs> | null
     /**
-     * The filter to search for the init_table to update in case it exists.
+     * The filter to search for the AdminUser to update in case it exists.
      */
-    where: init_tableWhereUniqueInput
+    where: AdminUserWhereUniqueInput
     /**
-     * In case the init_table found by the `where` argument doesn't exist, create a new init_table with this data.
+     * In case the AdminUser found by the `where` argument doesn't exist, create a new AdminUser with this data.
      */
-    create: XOR<init_tableCreateInput, init_tableUncheckedCreateInput>
+    create: XOR<AdminUserCreateInput, AdminUserUncheckedCreateInput>
     /**
-     * In case the init_table was found with the provided `where` argument, update it with this data.
+     * In case the AdminUser was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<init_tableUpdateInput, init_tableUncheckedUpdateInput>
+    update: XOR<AdminUserUpdateInput, AdminUserUncheckedUpdateInput>
   }
 
   /**
-   * init_table delete
+   * AdminUser delete
    */
-  export type init_tableDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the init_table
+     * Select specific fields to fetch from the AdminUser
      */
-    select?: init_tableSelect<ExtArgs> | null
+    select?: AdminUserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the init_table
+     * Omit specific fields from the AdminUser
      */
-    omit?: init_tableOmit<ExtArgs> | null
+    omit?: AdminUserOmit<ExtArgs> | null
     /**
-     * Filter which init_table to delete.
+     * Filter which AdminUser to delete.
      */
-    where: init_tableWhereUniqueInput
+    where: AdminUserWhereUniqueInput
   }
 
   /**
-   * init_table deleteMany
+   * AdminUser deleteMany
    */
-  export type init_tableDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which init_tables to delete
+     * Filter which AdminUsers to delete
      */
-    where?: init_tableWhereInput
+    where?: AdminUserWhereInput
     /**
-     * Limit how many init_tables to delete.
+     * Limit how many AdminUsers to delete.
      */
     limit?: number
   }
 
   /**
-   * init_table without action
+   * AdminUser without action
    */
-  export type init_tableDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminUserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the init_table
+     * Select specific fields to fetch from the AdminUser
      */
-    select?: init_tableSelect<ExtArgs> | null
+    select?: AdminUserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the init_table
+     * Omit specific fields from the AdminUser
      */
-    omit?: init_tableOmit<ExtArgs> | null
+    omit?: AdminUserOmit<ExtArgs> | null
   }
 
 
@@ -1749,11 +1793,15 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const Init_tableScalarFieldEnum: {
-    id: 'id'
+  export const AdminUserScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    password: 'password',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
-  export type Init_tableScalarFieldEnum = (typeof Init_tableScalarFieldEnum)[keyof typeof Init_tableScalarFieldEnum]
+  export type AdminUserScalarFieldEnum = (typeof AdminUserScalarFieldEnum)[keyof typeof AdminUserScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1762,6 +1810,14 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const AdminUserOrderByRelevanceFieldEnum: {
+    username: 'username',
+    password: 'password'
+  };
+
+  export type AdminUserOrderByRelevanceFieldEnum = (typeof AdminUserOrderByRelevanceFieldEnum)[keyof typeof AdminUserOrderByRelevanceFieldEnum]
 
 
   /**
@@ -1777,6 +1833,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'String'
+   */
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1786,66 +1856,112 @@ export namespace Prisma {
    */
 
 
-  export type init_tableWhereInput = {
-    AND?: init_tableWhereInput | init_tableWhereInput[]
-    OR?: init_tableWhereInput[]
-    NOT?: init_tableWhereInput | init_tableWhereInput[]
-    id?: IntFilter<"init_table"> | number
+  export type AdminUserWhereInput = {
+    AND?: AdminUserWhereInput | AdminUserWhereInput[]
+    OR?: AdminUserWhereInput[]
+    NOT?: AdminUserWhereInput | AdminUserWhereInput[]
+    id?: IntFilter<"AdminUser"> | number
+    username?: StringFilter<"AdminUser"> | string
+    password?: StringFilter<"AdminUser"> | string
+    createdAt?: DateTimeFilter<"AdminUser"> | Date | string
+    updatedAt?: DateTimeFilter<"AdminUser"> | Date | string
   }
 
-  export type init_tableOrderByWithRelationInput = {
+  export type AdminUserOrderByWithRelationInput = {
     id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: AdminUserOrderByRelevanceInput
   }
 
-  export type init_tableWhereUniqueInput = Prisma.AtLeast<{
+  export type AdminUserWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: init_tableWhereInput | init_tableWhereInput[]
-    OR?: init_tableWhereInput[]
-    NOT?: init_tableWhereInput | init_tableWhereInput[]
-  }, "id">
+    username?: string
+    AND?: AdminUserWhereInput | AdminUserWhereInput[]
+    OR?: AdminUserWhereInput[]
+    NOT?: AdminUserWhereInput | AdminUserWhereInput[]
+    password?: StringFilter<"AdminUser"> | string
+    createdAt?: DateTimeFilter<"AdminUser"> | Date | string
+    updatedAt?: DateTimeFilter<"AdminUser"> | Date | string
+  }, "id" | "username">
 
-  export type init_tableOrderByWithAggregationInput = {
+  export type AdminUserOrderByWithAggregationInput = {
     id?: SortOrder
-    _count?: init_tableCountOrderByAggregateInput
-    _avg?: init_tableAvgOrderByAggregateInput
-    _max?: init_tableMaxOrderByAggregateInput
-    _min?: init_tableMinOrderByAggregateInput
-    _sum?: init_tableSumOrderByAggregateInput
+    username?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AdminUserCountOrderByAggregateInput
+    _avg?: AdminUserAvgOrderByAggregateInput
+    _max?: AdminUserMaxOrderByAggregateInput
+    _min?: AdminUserMinOrderByAggregateInput
+    _sum?: AdminUserSumOrderByAggregateInput
   }
 
-  export type init_tableScalarWhereWithAggregatesInput = {
-    AND?: init_tableScalarWhereWithAggregatesInput | init_tableScalarWhereWithAggregatesInput[]
-    OR?: init_tableScalarWhereWithAggregatesInput[]
-    NOT?: init_tableScalarWhereWithAggregatesInput | init_tableScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"init_table"> | number
+  export type AdminUserScalarWhereWithAggregatesInput = {
+    AND?: AdminUserScalarWhereWithAggregatesInput | AdminUserScalarWhereWithAggregatesInput[]
+    OR?: AdminUserScalarWhereWithAggregatesInput[]
+    NOT?: AdminUserScalarWhereWithAggregatesInput | AdminUserScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"AdminUser"> | number
+    username?: StringWithAggregatesFilter<"AdminUser"> | string
+    password?: StringWithAggregatesFilter<"AdminUser"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"AdminUser"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AdminUser"> | Date | string
   }
 
-  export type init_tableCreateInput = {
-
+  export type AdminUserCreateInput = {
+    username: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type init_tableUncheckedCreateInput = {
+  export type AdminUserUncheckedCreateInput = {
     id?: number
+    username: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type init_tableUpdateInput = {
-
+  export type AdminUserUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type init_tableUncheckedUpdateInput = {
+  export type AdminUserUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type init_tableCreateManyInput = {
+  export type AdminUserCreateManyInput = {
     id?: number
+    username: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type init_tableUpdateManyMutationInput = {
-
+  export type AdminUserUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type init_tableUncheckedUpdateManyInput = {
+  export type AdminUserUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -1859,23 +1975,67 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type init_tableCountOrderByAggregateInput = {
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type AdminUserOrderByRelevanceInput = {
+    fields: AdminUserOrderByRelevanceFieldEnum | AdminUserOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AdminUserCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AdminUserAvgOrderByAggregateInput = {
     id?: SortOrder
   }
 
-  export type init_tableAvgOrderByAggregateInput = {
+  export type AdminUserMaxOrderByAggregateInput = {
     id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type init_tableMaxOrderByAggregateInput = {
+  export type AdminUserMinOrderByAggregateInput = {
     id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type init_tableMinOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type init_tableSumOrderByAggregateInput = {
+  export type AdminUserSumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -1895,6 +2055,46 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -1912,6 +2112,32 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -1939,6 +2165,38 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
 

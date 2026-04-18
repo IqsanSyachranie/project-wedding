@@ -1,15 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
 
 /**
- * Middleware stub to check for admin authentication
- * Current implementation: Just checks if a session exists (placeholder)
- * Story 1.4 will implement full admin logic
+ * Middleware to enforce admin authentication.
+ * Checks that a valid session with a userId is present, as set by the
+ * POST /api/v1/auth/login handler (Story 1.4).
  */
 export const requireAdmin = (req: Request, res: Response, next: NextFunction) => {
-  // @ts-ignore - session might not be defined on Request yet or might not have user
-  const user = req.session?.user;
+  const userId = req.session?.userId;
 
-  if (!user || user.role !== 'ADMIN') {
+  if (!userId) {
     return res.status(401).json({
       error: {
         code: 'UNAUTHORIZED',
