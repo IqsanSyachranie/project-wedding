@@ -99,6 +99,51 @@ const authController = {
       },
     });
   },
+  /**
+   * Logout handler.
+   * Destroys the session and clears the session ID cookie.
+   * @route POST /api/v1/auth/logout
+   */
+  async logout(req: Request, res: Response) {
+    try {
+      if (req.session) {
+        req.session.destroy((err) => {
+          if (err) {
+            console.error('Logout error (session destroy):', err.message);
+            return res.status(500).json({
+              error: {
+                code: 'INTERNAL_SERVER_ERROR',
+                message: 'Could not log out, please try again',
+              },
+            });
+          }
+
+          res.clearCookie('sid');
+          return res.status(200).json({
+            data: {
+              success: true,
+              message: 'Logout successful',
+            },
+          });
+        });
+      } else {
+        return res.status(200).json({
+          data: {
+            success: true,
+            message: 'No active session to logout',
+          },
+        });
+      }
+    } catch (error) {
+      console.error('Logout error:', error instanceof Error ? error.message : 'Unknown error');
+      return res.status(500).json({
+        error: {
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'An error occurred during logout',
+        },
+      });
+    }
+  },
 };
 
 export { authController };

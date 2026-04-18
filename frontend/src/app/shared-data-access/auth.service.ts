@@ -86,10 +86,32 @@ export class AuthService {
   }
 
   /**
-   * Logout (To be implemented in story 1.6)
+   * Logout with CSRF token acquisition and state clearing
    */
-  logout(): void {
-    // For now just clear state
-    this._currentUser.set(null);
+  logout(): Observable<any> {
+    this._loading.set(true);
+
+    // 1. Get CSRF Token
+    return this.api.get<{ data: CSRFResponse }>('/auth/csrf').pipe(
+      switchMap(csrfRes => {
+        const csrfToken = csrfRes.data.csrfToken;
+
+        // 2. Perform Logout with the token in headers
+        return this.api.post<any>('/auth/logout', {}, {
+          headers: { 'X-CSRF-Token': csrfToken }
+        });
+      }),
+      tap(() => {
+        // 3. Clear local state upon successful logout
+        this._currentUser.set(null);
+        this._loading.set(false);
+      }),
+      catchError(err => {
+        // Clear local state even if backend fails (failsafe)
+        this._currentUser.set(null);
+        this._loading.set(false);
+        throw err;
+      })
+    );
   }
 }

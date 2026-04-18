@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../shared-data-access/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -77,9 +78,12 @@ import { AuthService } from '../../shared-data-access/auth.service';
 })
 export class DashboardComponent {
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   onLogout() {
-    this.authService.logout();
-    window.location.href = '/login';
+    this.authService.logout().subscribe({
+      next: () => this.router.navigate(['/login']),
+      error: () => this.router.navigate(['/login']), // Always redirect even on error
+    });
   }
 }

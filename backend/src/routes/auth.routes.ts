@@ -24,4 +24,12 @@ router.get('/me', authController.checkSession);
  */
 router.get('/csrf', authController.getCsrfToken);
 
+/**
+ * @route POST /api/v1/auth/logout
+ * @desc Logout admin user and clear session cookie
+ * @access Protected by CSRF
+ */
+router.post('/logout', authController.logout);
+
+
 export default router;
