@@ -1,0 +1,66 @@
+@use "styles/abstracts" as *;
+@use "styles/base" as *;
+
+// Note: Google Fonts loaded via <link> in index.html to avoid Dart Sass @import deprecation warning.
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: var(--color-ivory);
+  background-image: 
+    radial-gradient(circle at top, rgba(184, 138, 59, 0.12), transparent 36%),
+    linear-gradient(180deg, #fcf7ef 0%, #f0e6d6 100%);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+
+  // iOS Safari does not support background-attachment: fixed on gradient backgrounds.
+  @supports (-webkit-touch-callout: none) {
+    background-attachment: scroll;
+  }
+
+  @include paper-texture;
+}
+
+// Scoped ambient transitions — avoids wildcard * performance hazard.
+// Applied to elements that meaningfully benefit from smooth state changes.
+a, button, input, select, textarea,
+[role="button"], [role="link"],
+.card, .btn, .nav-link, .overlay {
+  transition:
+    background-color 0.4s var(--ease-royal),
+    border-color 0.4s var(--ease-royal),
+    box-shadow 0.4s var(--ease-royal),
+    color 0.4s var(--ease-royal),
+    transform 0.4s var(--ease-royal);
+}
+
+// Invitation micro-interactions — instant hover feedback (Story 2.6)
+.invitation-content a,
+.invitation-content button,
+.invitation-content [role="button"] {
+  transition: transform 0.2s var(--ease-royal), box-shadow 0.2s var(--ease-royal);
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Accessibility: Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+  }
+}

@@ -1,0 +1,44 @@
+@use "../abstracts" as *;
+
+body {
+  font-family: $font-family-body;
+  font-size: fluid(16px, 18px);
+  line-height: 1.6;
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: $space-xs;
+  color: var(--color-gold);
+}
+
+h1 {
+  font-size: clamp(2.75rem, 5vw, 4.5rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: fluid(32px, 48px);
+}
+
+h3 {
+  font-size: fluid(24px, 32px);
+}
+
+p {
+  margin-bottom: $space-xs;
+}
+
+.font-accent {
+  font-family: $font-family-accent;
+  font-style: italic;
+}
+
+.gold-foil {
+  @include gold-shine;
+}

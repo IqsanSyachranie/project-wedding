@@ -1,0 +1,108 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/dbmodel/wed"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum AttendanceStatus {
+  ATTENDING
+  NOT_ATTENDING
+}
+
+model AdminUser {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Invitation {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  venueLocations   VenueLocation[]
+  eventSchedules   EventSchedule[]
+  rsvpSubmissions  RSVPSubmission[]
+  guestbookEntries GuestbookEntry[]
+  cashlessAccounts CashlessAccount[]
+}
+
+model VenueLocation {
+  id        Int      @id @default(autoincrement())
+  name      String
+  address   String
+  latitude  Float
+  longitude Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  invitationId Int
+  invitation   Invitation @relation(fields: [invitationId], references: [id])
+
+  @@index([invitationId])
+}
+
+model EventSchedule {
+  id        Int      @id @default(autoincrement())
+  title     String
+  date      DateTime @db.Date
+  startTime DateTime
+  endTime   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  invitationId Int
+  invitation   Invitation @relation(fields: [invitationId], references: [id])
+
+  @@index([invitationId])
+}
+
+model RSVPSubmission {
+  id               Int              @id @default(autoincrement())
+  name             String
+  email            String
+  attendanceStatus AttendanceStatus
+  paxCount         Int
+  idempotencyKey   String?          @unique
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  invitationId Int
+  invitation   Invitation @relation(fields: [invitationId], references: [id])
+
+  @@index([invitationId])
+}
+
+model GuestbookEntry {
+  id             Int      @id @default(autoincrement())
+  name           String
+  message        String   @db.Text
+  isVisible      Boolean  @default(true)
+  idempotencyKey String?  @unique
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  invitationId Int
+  invitation   Invitation @relation(fields: [invitationId], references: [id])
+
+  @@index([invitationId])
+}
+
+model CashlessAccount {
+  id                Int      @id @default(autoincrement())
+  bankName          String
+  accountNumber     String
+  accountHolderName String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  invitationId Int
+  invitation   Invitation @relation(fields: [invitationId], references: [id])
+
+  @@index([invitationId])
+}

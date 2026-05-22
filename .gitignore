@@ -1,0 +1,30 @@
+# Dependency folders
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Environment variables
+.env
+backend/.env
+
+# Build outputs
+dist/
+frontend/dist/
+.angular/
+
+# Prisma
+backend/prisma/*.db
+backend/prisma/*.db-journal
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+.bmad/logs/
+
+# BMAD Files
+_bmad/
+_bmad-*/
+.agent/
+.agents/
+.github/
+docs/

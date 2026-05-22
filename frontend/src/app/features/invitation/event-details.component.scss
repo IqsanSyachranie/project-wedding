@@ -1,0 +1,179 @@
+@use "styles/abstracts" as *;
+
+.event-details {
+  position: relative;
+  padding: $space-lg $space-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-ivory);
+
+  &__inner {
+    @include center-column(760px);
+    position: relative;
+    z-index: 1;
+  }
+
+  &__ornament {
+    color: var(--color-gold);
+    opacity: 0.4;
+    font-size: 1.25rem;
+    letter-spacing: 1rem;
+    margin-bottom: $space-xs;
+    user-select: none;
+  }
+
+  &__heading {
+    font-family: $font-family-heading;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    color: var(--color-gold);
+    margin: 0 0 $space-sm;
+  }
+
+  &__card {
+    background: #F3EBDF;
+    border-radius: $radius-royal;
+    padding: $space-xs;
+    margin-bottom: $space-xs;
+    box-shadow: var(--shadow-royal);
+    text-align: left;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__card-title {
+    font-family: $font-family-heading;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    color: var(--color-burgundy);
+    margin: 0 0 0.5rem;
+  }
+
+  &__card-info {
+    font-family: $font-family-body;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    color: var(--color-ink);
+    line-height: 1.7;
+    margin: 0 0 0.5rem;
+  }
+
+  &__card-address {
+    font-family: $font-family-accent;
+    font-style: italic;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    color: var(--color-teak);
+    line-height: 1.6;
+    margin: 0 0 $space-xs;
+  }
+
+  &__card-action {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    background-color: var(--color-burgundy);
+    color: var(--color-gold);
+    font-family: $font-family-body;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    border-radius: $radius-royal;
+    text-decoration: none;
+    transition: opacity 0.3s var(--ease-royal);
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  &__map-wrapper {
+    width: 100%;
+    border-radius: $radius-royal;
+    overflow: hidden;
+    border: 2px solid var(--color-gold);
+    margin-top: $space-xs;
+  }
+
+  &__map-container {
+    height: 320px;
+    width: 100%;
+    z-index: 0;
+  }
+
+  &__loading {
+    font-family: $font-family-body;
+    font-size: 1rem;
+    color: var(--color-teak);
+    padding: $space-xs 0;
+  }
+
+  &__error {
+    font-family: $font-family-body;
+    font-size: 0.9rem;
+    color: var(--color-burgundy);
+    background: rgba(91, 34, 48, 0.08);
+    border-radius: $radius-royal;
+    padding: $space-xs;
+    margin-top: $space-xs;
+  }
+
+  &__empty {
+    font-family: $font-family-accent;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--color-teak);
+    padding: $space-xs 0;
+    opacity: 0.6;
+  }
+
+  &__calendar-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+
+  &__calendar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 1rem;
+    font-family: $font-family-body;
+    font-size: clamp(0.8125rem, 1.5vw, 0.9375rem);
+    line-height: 1.4;
+    min-height: 44px;
+    border-radius: $radius-royal;
+    cursor: pointer;
+    transition: opacity 0.3s var(--ease-royal), background-color 0.3s var(--ease-royal);
+    text-decoration: none;
+    background: transparent;
+    border: 2px solid var(--color-burgundy);
+    color: var(--color-gold);
+
+    &:hover {
+      opacity: 0.8;
+      background-color: rgba(91, 34, 48, 0.06);
+    }
+  }
+
+  &__calendar-btn--google {
+    border-color: #4481FF;
+    color: #4481FF;
+
+    &:hover {
+      background-color: rgba(68, 129, 255, 0.06);
+    }
+  }
+}
+
+.venue-marker {
+  background: none !important;
+  border: none !important;
+}
+
+.venue-marker__dot {
+  width: 20px;
+  height: 20px;
+  background: var(--color-burgundy);
+  border: 3px solid var(--color-gold);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}

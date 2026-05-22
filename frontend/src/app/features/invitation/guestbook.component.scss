@@ -1,0 +1,339 @@
+@use "styles/abstracts" as *;
+
+.guestbook {
+  position: relative;
+  padding: $space-lg $space-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-ivory);
+
+  &__inner {
+    @include center-column(760px);
+    position: relative;
+    z-index: 1;
+  }
+
+  &__ornament {
+    color: var(--color-gold);
+    opacity: 0.4;
+    font-size: 1.25rem;
+    letter-spacing: 1rem;
+    margin-bottom: $space-xs;
+    user-select: none;
+  }
+
+  &__heading {
+    font-family: $font-family-heading;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    color: var(--color-gold);
+    margin: 0 0 $space-sm;
+  }
+
+  &__messages {
+    margin-bottom: $space-xs;
+  }
+
+  &__loading-card {
+    display: flex;
+    gap: 1rem;
+    background: #F3EBDF;
+    border-radius: $radius-royal;
+    padding: $space-xs;
+    margin-bottom: $space-xs;
+    box-shadow: var(--shadow-royal);
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  &__skeleton-lines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.25rem;
+  }
+
+  &__skeleton {
+    background: linear-gradient(90deg, #E8DCCC 25%, #F3EBDF 50%, #E8DCCC 75%);
+    background-size: 200% 100%;
+    animation: guestbook-shimmer 1.5s ease-in-out infinite;
+    border-radius: 8px;
+
+    &--avatar {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    &--name {
+      width: 40%;
+      height: 1rem;
+    }
+
+    &--text {
+      width: 80%;
+      height: 0.875rem;
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  &__empty-text {
+    font-family: $font-family-body;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    opacity: 0.6;
+    margin: 0 0 1rem;
+  }
+
+  &__card {
+    display: flex;
+    gap: 1rem;
+    background: #F3EBDF;
+    border-radius: $radius-royal;
+    padding: $space-xs;
+    margin-bottom: $space-xs;
+    box-shadow: var(--shadow-royal);
+    text-align: left;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-ivory);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-family-heading;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    flex: 1;
+  }
+
+  &__name {
+    font-family: $font-family-accent;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-burgundy);
+    margin: 0 0 0.25rem;
+  }
+
+  &__text {
+    font-family: $font-family-body;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    line-height: 1.6;
+    opacity: 0.8;
+    margin: 0;
+  }
+
+  &__form-toggle {
+    font-family: $font-family-body;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    background: var(--color-gold);
+    color: var(--color-ivory);
+    border: none;
+    border-radius: $radius-royal;
+    cursor: pointer;
+    transition: background 0.3s var(--ease-royal);
+    min-height: 44px;
+
+    &:hover {
+      background: color-mix(in srgb, var(--color-gold), var(--color-burgundy) 15%);
+    }
+  }
+
+  &__form-card {
+    background: #F3EBDF;
+    border: 2px solid var(--color-gold);
+    border-radius: $radius-royal;
+    padding: $space-xs;
+    box-shadow: var(--shadow-royal);
+    margin-top: $space-xs;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__field-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0.5rem;
+  }
+
+  &__label {
+    font-family: $font-family-body;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  &__input {
+    font-family: $font-family-body;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-sand);
+    border-radius: 12px;
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    outline: none;
+    transition: border-color 0.3s var(--ease-royal), box-shadow 0.3s var(--ease-royal);
+    min-height: 44px;
+
+    &:focus {
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 3px rgba(184,138,59,0.15);
+    }
+
+    &::placeholder {
+      color: var(--color-sand);
+      opacity: 0.7;
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.5;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+  }
+
+  &__cancel-btn {
+    font-family: $font-family-body;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-sand);
+    border-radius: $radius-royal;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-royal);
+    min-height: 44px;
+
+    &:hover {
+      border-color: var(--color-ink);
+    }
+  }
+
+  &__submit {
+    font-family: $font-family-body;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    background: var(--color-burgundy);
+    color: var(--color-ivory);
+    border: none;
+    border-radius: $radius-royal;
+    cursor: pointer;
+    transition: background 0.3s var(--ease-royal);
+    min-height: 44px;
+
+    &:hover:not(:disabled) {
+      background: color-mix(in srgb, var(--color-burgundy), var(--color-gold) 20%);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__error-text {
+    font-family: $font-family-body;
+    font-size: 0.85rem;
+    color: #A94D3F;
+    margin: 0;
+  }
+
+  &__error {
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  &__error-icon {
+    font-size: 2rem;
+    color: #A94D3F;
+    margin: 0 0 0.5rem;
+  }
+
+  &__spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--color-sand);
+    border-top-color: var(--color-burgundy);
+    border-radius: 50%;
+    animation: guestbook-spin 0.6s linear infinite;
+  }
+
+  &__retrying {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  &__retrying-text {
+    font-family: $font-family-body;
+    font-size: 0.9rem;
+    color: var(--color-ink);
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  &__success {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  &__success-icon {
+    font-size: 2.5rem;
+    color: var(--color-gold);
+    margin: 0 0 0.5rem;
+  }
+
+  &__success-text {
+    font-family: $font-family-body;
+    font-size: 1rem;
+    color: var(--color-gold);
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+@keyframes guestbook-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes guestbook-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

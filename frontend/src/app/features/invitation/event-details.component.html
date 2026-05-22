@@ -1,0 +1,68 @@
+<section class="event-details" [class.event-details--revealed]="revealed()" aria-label="Detail waktu dan lokasi acara">
+  <div class="event-details__inner">
+    <div class="event-details__ornament" aria-hidden="true">&#10070; &#10070; &#10070;</div>
+    <h2 class="event-details__heading">Waktu &amp; Tempat</h2>
+
+    @if (dataLoading()) {
+      <div class="event-details__loading">Memuat data...</div>
+    }
+
+    @if (!dataLoading()) {
+      @for (schedule of schedules(); track schedule.id) {
+        <div class="event-details__card">
+          <h3 class="event-details__card-title">{{ schedule.title }}</h3>
+          <p class="event-details__card-info">
+            <time [attr.datetime]="schedule.startTime">{{ formatDate(schedule.date) }}</time><br>
+            {{ formatTime(schedule.startTime) }} - {{ formatTime(schedule.endTime) }}
+          </p>
+          <div class="event-details__calendar-actions">
+            <button type="button"
+                    class="event-details__calendar-btn"
+                    (click)="addToCalendar(schedule)">
+              @if (copiedScheduleId() === schedule.id) {
+                &#10003; Acara tersimpan!
+              } @else {
+                &#128197; Tambah ke Kalender
+              }
+            </button>
+            <a [href]="getGoogleCalendarUrl(schedule)"
+               target="_blank" rel="noopener noreferrer"
+               class="event-details__calendar-btn event-details__calendar-btn--google">
+              Google Calendar
+            </a>
+          </div>
+        </div>
+      }
+    }
+
+    @let venue = venues()[0];
+
+    @if (!dataLoading() && venue && !mapFailed()) {
+      <div class="event-details__map-wrapper">
+        <div #mapContainer class="event-details__map-container"></div>
+      </div>
+    }
+
+    @if (!dataLoading() && venue && mapFailed()) {
+      <div class="event-details__card event-details__card--fallback">
+        <p class="event-details__card-title">📍 {{ venue.name }}</p>
+        <p class="event-details__card-address">{{ venue.address }}</p>
+        <a [href]="getGoogleMapsLink(venue.latitude, venue.longitude)"
+           target="_blank" rel="noopener noreferrer"
+           class="event-details__card-action">
+          Buka di Google Maps &rarr;
+        </a>
+      </div>
+    }
+
+    @if (!dataLoading() && !venue && schedules().length === 0) {
+      <div class="event-details__empty">Belum ada data lokasi dan jadwal.</div>
+    }
+
+    @if (dataError(); as error) {
+      <div class="event-details__error">{{ error }}</div>
+    }
+
+    <div class="event-details__ornament" aria-hidden="true">&#10070; &#10070; &#10070;</div>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+// Anime.js Motion Presets (Story 2.6)
+// These presets are implemented in JS via shared-utils/motion-utils.ts.
+// The CSS classes below (.animate-fade-up, .delay-N, etc.) remain as
+// fallbacks for when JS is disabled or anime.js fails to load.
+// Motion preset mapping (see motion-utils.ts):
+//   ceremonial: duration 800ms, ease inOutCubic, parallax 30px
+//   gentle:     duration 600ms, ease outCubic,   parallax 15px
+//   functional: duration 300ms, ease outCubic,   parallax 0px
+//   reduced:    duration 1ms,   instant set (prefers-reduced-motion)
+
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: -200% center; }
+}
+
+@keyframes royalFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subtleFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: royalFadeInUp 0.8s var(--ease-royal) forwards;
+}
+
+// Use this class to re-trigger the fade-up on dynamically shown elements.
+// Toggle: remove .animate-fade-up-reset, force reflow, re-add .animate-fade-up.
+.animate-fade-up-reset {
+  opacity: 1;
+  animation: none;
+}
+
+.animate-float {
+  animation: subtleFloat 4s ease-in-out infinite;
+}
+
+// Staggered delay classes (over-engineered)
+@for $i from 1 through 10 {
+  .delay-#{$i} {
+    animation-delay: #{$i * 150}ms;
+  }
+}

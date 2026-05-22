@@ -1,0 +1,39 @@
+@use "sass:math";
+@use "sass:meta";
+
+/// Strips the unit from a value
+@function strip-unit($value) {
+  @if meta.type-of($value) == "number" and not math.is-unitless($value) {
+    @return math.div($value, ($value * 0 + 1));
+  }
+  @return $value;
+}
+
+/// Converts px to rem
+@function px-to-rem($px-value) {
+  @return math.div(strip-unit($px-value), 16) * 1rem;
+}
+
+/// Generates a fluid value between a min and max
+@function fluid($min-size, $max-size, $min-breakpoint: 320px, $max-breakpoint: 1920px) {
+  // Guard: invalid size range — return fixed min value
+  @if $min-size >= $max-size {
+    @warn "fluid(): min-size (#{$min-size}) must be less than max-size (#{$max-size}). Returning min-size.";
+    @return px-to-rem($min-size);
+  }
+
+  // Guard: invalid breakpoint range — would cause division by zero
+  @if $min-breakpoint >= $max-breakpoint {
+    @error "fluid(): min-breakpoint (#{$min-breakpoint}) must be less than max-breakpoint (#{$max-breakpoint}).";
+  }
+
+  $min-size-rem: px-to-rem($min-size);
+  $max-size-rem: px-to-rem($max-size);
+  $min-breakpoint-rem: px-to-rem($min-breakpoint);
+  $max-breakpoint-rem: px-to-rem($max-breakpoint);
+
+  $slope: math.div(strip-unit($max-size-rem - $min-size-rem), strip-unit($max-breakpoint-rem - $min-breakpoint-rem));
+  $y-axis-intersection: -1 * $min-breakpoint-rem * $slope + $min-size-rem;
+
+  @return clamp(#{$min-size-rem}, #{$y-axis-intersection} + #{$slope * 100vw}, #{$max-size-rem});
+}

@@ -1,0 +1,47 @@
+// Royal Manuscript Palette
+$color-royal-ivory: #F6EFE2;    // Primary BG
+$color-royal-sand: #D7C1A1;     // Secondary BG / Borders
+$color-royal-gold: #B88A3B;     // Accents / Headings
+$color-royal-burgundy: #5B2230; // Primary Contrast
+$color-royal-ink: #171313;      // Text
+$color-royal-leaf: #2D4A3E;     // Secondary Contrast
+$color-royal-teak: #3A261E;     // Deep Accents / Shadows
+
+// Spacing Scale (8px base)
+$space-xs: 1.5rem;  // 24px
+$space-sm: 2.5rem;  // 40px
+$space-md: 4rem;    // 64px
+$space-lg: 6rem;    // 96px
+$space-xl: 8rem;    // 128px
+
+// Radii
+$radius-royal: 28px;
+$radius-royal-lg: 30px;
+
+// Shadows
+$shadow-royal: 0 24px 60px rgba(57, 37, 23, 0.12);
+
+// Typography Stacks
+$font-family-heading: 'Cormorant Garamond', serif;
+$font-family-body: 'IBM Plex Sans', sans-serif;
+$font-family-accent: 'Spectral', serif;
+
+:root {
+  --color-ivory: #{$color-royal-ivory};
+  --color-sand: #{$color-royal-sand};
+  --color-gold: #{$color-royal-gold};
+  --color-burgundy: #{$color-royal-burgundy};
+  --color-ink: #{$color-royal-ink};
+  --color-leaf: #{$color-royal-leaf};
+  --color-teak: #{$color-royal-teak};
+
+  --shadow-royal: #{$shadow-royal};
+  --radius-royal: #{$radius-royal};
+  --radius-royal-lg: #{$radius-royal-lg};
+
+  --ease-royal: cubic-bezier(0.25, 1, 0.5, 1);
+
+  // CMS-overridable accent hooks (see architecture.md)
+  --hero-accent: #{$color-royal-gold};
+  --hero-accent-secondary: #{$color-royal-burgundy};
+}

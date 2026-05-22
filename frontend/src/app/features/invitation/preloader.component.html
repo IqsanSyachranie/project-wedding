@@ -1,0 +1,37 @@
+<div
+  class="preloader-overlay"
+  [class.preloader-overlay--exit]="isExiting()"
+  [class.preloader-overlay--slow-network]="status() === 'slowNetwork'"
+  role="progressbar"
+  [attr.aria-valuenow]="progress()"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-label="Memuat undangan"
+>
+  <div class="preloader-content">
+    <!-- Branded monogram / Javanese motif centerpiece -->
+    <div class="preloader-motif" aria-hidden="true">
+      <span class="preloader-motif__ornament top-ornament">&#10070;</span>
+      <div class="preloader-monogram">
+        <span class="preloader-monogram__initial">P</span>
+        <span class="preloader-monogram__amp">&#10038;</span>
+        <span class="preloader-monogram__initial">W</span>
+      </div>
+      <span class="preloader-motif__ornament bottom-ornament">&#10070;</span>
+    </div>
+
+    <!-- Invitation line -->
+    <p class="preloader-subtitle">Mohon Doa Restu</p>
+
+    <!-- Progress bar -->
+    <div class="preloader-progress-track" aria-hidden="true">
+      <div
+        class="preloader-progress-fill"
+        [ngStyle]="{ width: progress() + '%' }"
+      ></div>
+    </div>
+
+    <!-- Status text -->
+    <p class="preloader-status" aria-live="polite">{{ statusLabel() }}</p>
+  </div>
+</div>
