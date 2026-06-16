@@ -1,0 +1,374 @@
+@use "styles/abstracts" as *;
+
+.gallery {
+  position: relative;
+  padding: $space-lg $space-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-dark);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 40% 40%, rgba(212,175,55,0.15) 1px, transparent 1px),
+      radial-gradient(circle at 60% 60%, rgba(212,175,55,0.1) 1px, transparent 1px);
+    background-size: 4px 4px, 6px 6px;
+  }
+
+  &__inner {
+    @include center-column(1100px);
+    position: relative;
+    z-index: 1;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $space-md;
+  }
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+
+    &::before,
+    &::after {
+      content: '';
+      height: 2px;
+      width: 4rem;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-gold));
+      border-radius: 9999px;
+    }
+
+    &::after {
+      background: linear-gradient(270deg, var(--color-primary), var(--color-gold));
+    }
+  }
+
+  &__divider-diamond {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--color-gold);
+    transform: rotate(45deg);
+  }
+
+  &__heading {
+    font-family: $font-family-heading;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-gold);
+    margin: 0 0 0.75rem;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  &__underline {
+    width: 6rem;
+    height: 3px;
+    background-color: var(--color-gold);
+    margin: 0 auto 1rem;
+    border-radius: 9999px;
+  }
+
+  &__subheading {
+    font-family: $font-family-body;
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    color: var(--color-cream);
+    opacity: 0.8;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  // Masonry layout — flex columns with organic feel
+  &__masonry {
+    display: flex;
+    gap: 0.625rem;
+
+    @media (min-width: 640px) {
+      gap: 0.875rem;
+    }
+
+    @media (min-width: 1024px) {
+      gap: 1rem;
+    }
+  }
+
+  &__column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+
+    @media (min-width: 640px) {
+      gap: 0.875rem;
+    }
+
+    @media (min-width: 1024px) {
+      gap: 1rem;
+    }
+
+    &:nth-child(2) {
+      margin-top: 1.5rem;
+
+      @media (min-width: 640px) {
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  &__item {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: zoom-in;
+    box-shadow: 0 10px 30px rgba($color-dark, 0.18);
+    transition: transform 0.5s var(--ease-royal), box-shadow 0.5s var(--ease-royal);
+
+    @media (min-width: 640px) {
+      border-radius: 1.25rem;
+    }
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 56px rgba($color-dark, 0.32);
+
+      .gallery__overlay {
+        opacity: 1;
+      }
+
+      .gallery__shimmer {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .gallery__img {
+        transform: scale(1.08);
+      }
+
+      .gallery__caption {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    &--tall {
+      aspect-ratio: 2 / 3;
+    }
+
+    &--medium {
+      aspect-ratio: 4 / 5;
+    }
+
+    &--short {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s var(--ease-royal);
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba($color-primary, 0.75) 0%,
+      rgba($color-primary, 0.3) 30%,
+      transparent 60%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.45s var(--ease-royal);
+    pointer-events: none;
+  }
+
+  &__caption {
+    color: #fff;
+    font-family: $font-family-body;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.5;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    transform: translateY(8px);
+    opacity: 0;
+    transition: transform 0.45s var(--ease-royal) 0.05s, opacity 0.45s var(--ease-royal) 0.05s;
+  }
+
+  &__shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba($color-gold, 0.12) 0%,
+      rgba($color-gold, 0.06) 50%,
+      transparent 100%
+    );
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.5s var(--ease-royal), transform 0.5s var(--ease-royal);
+    pointer-events: none;
+  }
+
+  &__placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-cream), var(--color-dark));
+    border: 1px solid rgba($color-gold, 0.15);
+    border-radius: $radius-royal;
+  }
+
+  &__more {
+    text-align: center;
+    margin-top: $space-sm;
+  }
+
+  &__more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 2.25rem;
+    background: var(--color-gold);
+    color: var(--color-dark);
+    border: none;
+    border-radius: $radius-royal;
+    font-family: $font-family-accent;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s var(--ease-royal);
+    box-shadow: 0 8px 24px rgba($color-gold, 0.2);
+
+    &:hover {
+      background: rgba($color-gold, 0.9);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 12px 32px rgba($color-gold, 0.3);
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  // Lightbox
+  &__lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0,0,0,0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease both;
+    cursor: zoom-out;
+  }
+
+  &__lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: rgba(255,255,255,0.25);
+    }
+  }
+
+  &__lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+    z-index: 2;
+
+    &:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    &--prev { left: 1rem; }
+    &--next { right: 1rem; }
+  }
+
+  &__lightbox-img {
+    max-width: 90vw;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: var(--radius-royal);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    animation: scaleIn 0.4s var(--ease-royal) both;
+  }
+
+  &__lightbox-caption {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.9);
+    font-family: $font-family-body;
+    font-size: 0.9rem;
+    text-align: center;
+    max-width: 80vw;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+
+  &__lightbox-counter {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.65);
+    font-family: $font-family-body;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

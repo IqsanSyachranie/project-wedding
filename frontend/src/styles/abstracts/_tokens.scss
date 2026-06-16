@@ -1,11 +1,18 @@
-// Royal Manuscript Palette
-$color-royal-ivory: #F6EFE2;    // Primary BG
-$color-royal-sand: #D7C1A1;     // Secondary BG / Borders
-$color-royal-gold: #B88A3B;     // Accents / Headings
-$color-royal-burgundy: #5B2230; // Primary Contrast
-$color-royal-ink: #171313;      // Text
-$color-royal-leaf: #2D4A3E;     // Secondary Contrast
-$color-royal-teak: #3A261E;     // Deep Accents / Shadows
+// Batak Simalungun Luxury Ethnic Palette (Design Knowledge v2)
+$color-primary: #a63a3a;    // Merah bata — warna dominan
+$color-dark: #1c1c1c;       // Hitam kayu — background gelap, teks utama
+$color-gold: #d4af37;       // Kuning emas — aksen premium
+$color-cream: #f7edd9;      // Putih krem — background terang
+$color-gray: #6b7280;       // Abu — teks sekunder
+
+// Legacy Royal Manuscript Palette (kept for compatibility)
+$color-royal-ivory: #F6EFE2;
+$color-royal-sand: #D7C1A1;
+$color-royal-gold: #B88A3B;
+$color-royal-burgundy: #5B2230;
+$color-royal-ink: #171313;
+$color-royal-leaf: #2D4A3E;
+$color-royal-teak: #3A261E;
 
 // Spacing Scale (8px base)
 $space-xs: 1.5rem;  // 24px
@@ -19,21 +26,28 @@ $radius-royal: 28px;
 $radius-royal-lg: 30px;
 
 // Shadows
-$shadow-royal: 0 24px 60px rgba(57, 37, 23, 0.12);
+$shadow-royal: 0 24px 60px rgba(28, 28, 28, 0.12);
 
 // Typography Stacks
-$font-family-heading: 'Cormorant Garamond', serif;
-$font-family-body: 'IBM Plex Sans', sans-serif;
-$font-family-accent: 'Spectral', serif;
+$font-family-heading: 'Libre Baskerville', serif;
+$font-family-body: 'Rubik', sans-serif;
+$font-family-accent: 'Libre Baskerville', serif;
 
 :root {
-  --color-ivory: #{$color-royal-ivory};
-  --color-sand: #{$color-royal-sand};
-  --color-gold: #{$color-royal-gold};
-  --color-burgundy: #{$color-royal-burgundy};
-  --color-ink: #{$color-royal-ink};
-  --color-leaf: #{$color-royal-leaf};
-  --color-teak: #{$color-royal-teak};
+  // New primary palette mapped to semantic names
+  --color-primary: #{$color-primary};
+  --color-dark: #{$color-dark};
+  --color-gold: #{$color-gold};
+  --color-cream: #{$color-cream};
+  --color-gray: #{$color-gray};
+
+  // Legacy mappings for backwards compatibility
+  --color-ivory: #{$color-cream};
+  --color-sand: #{$color-cream};
+  --color-burgundy: #{$color-primary};
+  --color-ink: #{$color-dark};
+  --color-leaf: #{$color-dark};
+  --color-teak: #{$color-dark};
 
   --shadow-royal: #{$shadow-royal};
   --radius-royal: #{$radius-royal};
@@ -41,7 +55,7 @@ $font-family-accent: 'Spectral', serif;
 
   --ease-royal: cubic-bezier(0.25, 1, 0.5, 1);
 
-  // CMS-overridable accent hooks (see architecture.md)
-  --hero-accent: #{$color-royal-gold};
-  --hero-accent-secondary: #{$color-royal-burgundy};
+  // CMS-overridable accent hooks
+  --hero-accent: #{$color-gold};
+  --hero-accent-secondary: #{$color-primary};
 }

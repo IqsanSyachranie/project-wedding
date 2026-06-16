@@ -16,7 +16,7 @@ export class VenueService {
     });
   }
 
-  async create(data: { name: string; address: string; latitude: number; longitude: number }) {
+  async create(data: any) {
     return prisma.venueLocation.create({
       data: {
         ...data,
@@ -25,7 +25,7 @@ export class VenueService {
     });
   }
 
-  async update(id: number, data: { name: string; address: string; latitude: number; longitude: number }) {
+  async update(id: number, data: any) {
     return prisma.venueLocation.update({
       where: { id },
       data,

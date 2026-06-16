@@ -7,11 +7,6 @@ datasource db {
   provider = "mysql"
 }
 
-enum AttendanceStatus {
-  ATTENDING
-  NOT_ATTENDING
-}
-
 model AdminUser {
   id        Int      @id @default(autoincrement())
   username  String   @unique
@@ -21,41 +16,47 @@ model AdminUser {
 }
 
 model Invitation {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  venueLocations   VenueLocation[]
-  eventSchedules   EventSchedule[]
-  rsvpSubmissions  RSVPSubmission[]
-  guestbookEntries GuestbookEntry[]
+  id               Int               @id @default(autoincrement())
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
   cashlessAccounts CashlessAccount[]
+  eventSchedules   EventSchedule[]
+  guestbookEntries GuestbookEntry[]
+  rsvpSubmissions  RSVPSubmission[]
+  venueLocations   VenueLocation[]
+  coupleInfos      CoupleInfo[]
+  storyItems       StoryItem[]
+  galleryImages    GalleryImage[]
+  giftAddresses    GiftAddress[]
+  config           InvitationConfig?
+  philosophyConfig PhilosophyConfig?
 }
 
 model VenueLocation {
-  id        Int      @id @default(autoincrement())
-  name      String
-  address   String
-  latitude  Float
-  longitude Float
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  invitationId Int
-  invitation   Invitation @relation(fields: [invitationId], references: [id])
+  id            Int        @id @default(autoincrement())
+  name          String
+  address       String
+  latitude      Float
+  longitude     Float
+  popupImageUrl String?
+  eventType     String? // AKAD | RESEPSI | etc.
+  mapZoom       Int        @default(15)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  invitationId  Int
+  invitation    Invitation @relation(fields: [invitationId], references: [id])
 
   @@index([invitationId])
 }
 
 model EventSchedule {
-  id        Int      @id @default(autoincrement())
-  title     String
-  date      DateTime @db.Date
-  startTime DateTime
-  endTime   DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id           Int        @id @default(autoincrement())
+  title        String
+  date         DateTime   @db.Date
+  startTime    DateTime
+  endTime      DateTime
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
   invitationId Int
   invitation   Invitation @relation(fields: [invitationId], references: [id])
 
@@ -68,40 +69,168 @@ model RSVPSubmission {
   email            String
   attendanceStatus AttendanceStatus
   paxCount         Int
-  idempotencyKey   String?          @unique
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
-
-  invitationId Int
-  invitation   Invitation @relation(fields: [invitationId], references: [id])
+  invitationId     Int
+  idempotencyKey   String?          @unique
+  invitation       Invitation       @relation(fields: [invitationId], references: [id])
 
   @@index([invitationId])
 }
 
 model GuestbookEntry {
-  id             Int      @id @default(autoincrement())
+  id             Int        @id @default(autoincrement())
   name           String
-  message        String   @db.Text
-  isVisible      Boolean  @default(true)
-  idempotencyKey String?  @unique
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  message        String     @db.Text
+  isVisible      Boolean    @default(true)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  invitationId   Int
+  idempotencyKey String?    @unique
+  invitation     Invitation @relation(fields: [invitationId], references: [id])
 
+  @@index([invitationId])
+}
+
+model CashlessAccount {
+  id                Int        @id @default(autoincrement())
+  bankName          String
+  accountNumber     String
+  accountHolderName String
+  bankLogoUrl       String?
+  qrCodeUrl         String?
+  sortOrder         Int        @default(0)
+  isActive          Boolean    @default(true)
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+  invitationId      Int
+  invitation        Invitation @relation(fields: [invitationId], references: [id])
+
+  @@index([invitationId])
+}
+
+model GiftAddress {
+  id            Int        @id @default(autoincrement())
+  label         String // e.g. "Alamat Kirim Kado"
+  recipientName String
+  phone         String?
+  address       String     @db.Text
+  postalCode    String?
+  note          String?    @db.Text
+  isActive      Boolean    @default(true)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  invitationId  Int
+  invitation    Invitation @relation(fields: [invitationId], references: [id])
+
+  @@index([invitationId])
+}
+
+model StoryImage {
+  id          Int       @id @default(autoincrement())
+  imageUrl    String
+  caption     String?
+  sortOrder   Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  storyItemId Int
+  storyItem   StoryItem @relation(fields: [storyItemId], references: [id], onDelete: Cascade)
+
+  @@index([storyItemId])
+}
+
+enum AttendanceStatus {
+  ATTENDING
+  NOT_ATTENDING
+}
+
+model InvitationConfig {
+  id                      Int        @id @default(autoincrement())
+  heroCoupleNames         String
+  heroOpeningLine         String
+  heroWeddingDateText     String
+  heroBackgroundImage     String?
+  weddingDate             DateTime
+  primaryColor            String
+  secondaryColor          String
+  backgroundColor         String
+  textColor               String
+  backgroundMusicUrl      String?
+  footerGreeting          String
+  footerClosingText       String
+  lockedLandingEnabled    Boolean    @default(true)
+  lockedLandingButtonText String     @default("Buka Undangan")
+  lockedLandingGreeting   String?
+  musicEnabled            Boolean    @default(true)
+  musicButtonPosition     String     @default("bottom-right")
+  createdAt               DateTime   @default(now())
+  updatedAt               DateTime   @updatedAt
+  invitationId            Int        @unique
+  invitation              Invitation @relation(fields: [invitationId], references: [id])
+
+  @@index([invitationId])
+}
+
+model CoupleInfo {
+  id              Int        @id @default(autoincrement())
+  groomName       String
+  brideName       String
+  groomParents    String
+  brideParents    String
+  greetingText    String
+  couplePhotoUrl  String?
+  groomPhotoUrl   String?
+  bridePhotoUrl   String?
+  groomSocialLink String?
+  brideSocialLink String?
+  bibleVerse      String?
+  bibleReference  String?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  invitationId    Int
+  invitation      Invitation @relation(fields: [invitationId], references: [id])
+
+  @@index([invitationId])
+}
+
+model StoryItem {
+  id           Int          @id @default(autoincrement())
+  title        String
+  body         String       @db.Text
+  imageUrl     String?
+  sortOrder    Int          @default(0)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  invitationId Int
+  invitation   Invitation   @relation(fields: [invitationId], references: [id])
+  images       StoryImage[]
+
+  @@index([invitationId])
+}
+
+model GalleryImage {
+  id           Int        @id @default(autoincrement())
+  imageUrl     String
+  caption      String?
+  sortOrder    Int        @default(0)
+  aspectRatio  String?    @default("medium") // tall | medium | short
+  isFeatured   Boolean    @default(false)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
   invitationId Int
   invitation   Invitation @relation(fields: [invitationId], references: [id])
 
   @@index([invitationId])
 }
 
-model CashlessAccount {
-  id                Int      @id @default(autoincrement())
-  bankName          String
-  accountNumber     String
-  accountHolderName String
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-
-  invitationId Int
+model PhilosophyConfig {
+  id           Int        @id @default(autoincrement())
+  quoteText    String     @db.Text
+  quoteMeaning String?    @db.Text
+  prayerText   String     @db.Text
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  invitationId Int        @unique
   invitation   Invitation @relation(fields: [invitationId], references: [id])
 
   @@index([invitationId])

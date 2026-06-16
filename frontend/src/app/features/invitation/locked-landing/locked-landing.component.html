@@ -1,0 +1,98 @@
+<div
+  class="locked-landing"
+  [class.locked-landing--exit]="isExiting()"
+  [style.backgroundImage]="backgroundImage() ? 'url(' + backgroundImage() + ')' : null"
+>
+  <div class="locked-landing__overlay"></div>
+
+  <!-- Floating particles -->
+  <div class="locked-landing__particles" aria-hidden="true">
+    @for (p of particles; track p.id) {
+      <div
+        class="locked-landing__particle"
+        [style.width.px]="p.size"
+        [style.height.px]="p.size"
+        [style.left.%]="p.left"
+        [style.top.%]="p.top"
+        [style.animation-delay.s]="p.delay"
+        [style.animation-duration.s]="p.duration"
+      ></div>
+    }
+  </div>
+
+  <div class="locked-landing__content">
+    <div class="locked-landing__layout">
+      <!-- Left: Text Content -->
+      <div class="locked-landing__column locked-landing__column--text">
+        <p class="locked-landing__label">Undangan Pernikahan</p>
+
+        <h1 class="locked-landing__names">{{ coupleNames() }}</h1>
+
+        <div class="locked-landing__ornament locked-landing__ornament--small" aria-hidden="true">
+          &#8212; &#10038;&#10038;&#10038; &#8212;
+        </div>
+
+        <!-- Countdown -->
+        @if (!timeRemaining().isPast) {
+          <div class="locked-landing__countdown" aria-label="Hitung mundur menuju hari pernikahan">
+            <div class="locked-landing__countdown-block">
+              <span class="locked-landing__countdown-number">{{ timeRemaining().days }}</span>
+              <span class="locked-landing__countdown-label">Hari</span>
+            </div>
+            <div class="locked-landing__countdown-block">
+              <span class="locked-landing__countdown-number">{{ timeRemaining().hours }}</span>
+              <span class="locked-landing__countdown-label">Jam</span>
+            </div>
+            <div class="locked-landing__countdown-block">
+              <span class="locked-landing__countdown-number">{{ timeRemaining().minutes }}</span>
+              <span class="locked-landing__countdown-label">Menit</span>
+            </div>
+            <div class="locked-landing__countdown-block">
+              <span class="locked-landing__countdown-number">{{ timeRemaining().seconds }}</span>
+              <span class="locked-landing__countdown-label">Detik</span>
+            </div>
+          </div>
+        } @else {
+          <p class="locked-landing__countdown-past">Acara telah dimulai</p>
+        }
+
+        @if (greeting()) {
+          <p class="locked-landing__greeting">{{ greeting() }}</p>
+        }
+
+        <button
+          type="button"
+          class="locked-landing__unlock-btn"
+          (click)="onUnlock()"
+        >
+          <span class="locked-landing__unlock-icon" aria-hidden="true">&#9825;</span>
+          {{ buttonText() }}
+        </button>
+      </div>
+
+      <!-- Right: Photo -->
+      <div class="locked-landing__column locked-landing__column--photo">
+        <div class="locked-landing__photo-stage">
+          <!-- Single Couple Photo -->
+          <div class="locked-landing__photo-wrapper locked-landing__photo-wrapper--main">
+            @if (groomPhotoUrl() || bridePhotoUrl()) {
+              <img
+                [src]="groomPhotoUrl() ?? bridePhotoUrl()!"
+                alt="Foto Mempelai"
+                class="locked-landing__photo locked-landing__photo--single"
+              />
+            } @else {
+              <span class="locked-landing__photo-initial">
+                {{ (groomName() ?? 'Pria')[0] }} &amp; {{ (brideName() ?? 'Wanita')[0] }}
+              </span>
+            }
+          </div>
+
+          <!-- Animated ornaments around photo -->
+          <div class="locked-landing__photo-ornament locked-landing__photo-ornament--heart" aria-hidden="true">&#9825;</div>
+          <div class="locked-landing__photo-ornament locked-landing__photo-ornament--star" aria-hidden="true">&#10038;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

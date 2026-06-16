@@ -1,0 +1,116 @@
+
+    <div class="card p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h3 class="h5 color-amber mb-1">Guestbook Management</h3>
+          <p class="small opacity-75 mb-0">Review, hide, or delete guestbook messages from the public invitation.</p>
+        </div>
+      </div>
+
+      @if (error()) {
+        <div class="alert alert-danger py-2 small">{{ error() }}</div>
+      }
+      @if (successMessage()) {
+        <div class="alert alert-success py-2 small">{{ successMessage() }}</div>
+      }
+
+      @if (isLoading()) {
+        <div class="text-center py-4">
+          <div class="spinner-border text-amber" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      } @else {
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control form-control-dark"
+            placeholder="Search by guest name..."
+            [ngModel]="searchQuery()"
+            (input)="onSearchInput($any($event.target).value)"
+          />
+        </div>
+
+        @if (entries().length === 0) {
+          <div class="text-center py-4 opacity-50">
+            <p class="mb-0">No guestbook entries found.</p>
+          </div>
+        } @else {
+          <div class="table-responsive">
+            <table class="table table-dark table-striped table-hover mb-0">
+              <thead>
+                <tr>
+                  <th class="col-narrow">#</th>
+                  <th>Name</th>
+                  <th class="col-message">Message</th>
+                  <th class="col-date">Date</th>
+                  <th class="col-status">Visibility</th>
+                  <th class="col-actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (entry of entries(); track entry.id; let i = $index) {
+                  <tr>
+                    <td class="text-muted">{{ (currentPage() - 1) * pageSize() + i + 1 }}</td>
+                    <td class="fw-medium">{{ entry.name }}</td>
+                    <td class="text-truncate" [title]="entry.message" style="max-width: 300px;">
+                      {{ entry.message.length > 80 ? (entry.message | slice:0:80) + '...' : entry.message }}
+                    </td>
+                    <td class="text-muted small">{{ entry.createdAt | date:'dd MMM yyyy, HH:mm' }}</td>
+                    <td>
+                      @if (entry.isVisible) {
+                        <span class="badge bg-jade">Visible</span>
+                      } @else {
+                        <span class="badge bg-secondary">Hidden</span>
+                      }
+                    </td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button
+                          class="btn btn-sm"
+                          [class.btn-outline-jade]="!entry.isVisible"
+                          [class.btn-outline-secondary]="entry.isVisible"
+                          (click)="onToggleVisibility(entry)"
+                          [disabled]="isSaving()"
+                        >
+                          {{ entry.isVisible ? 'Hide' : 'Show' }}
+                        </button>
+                        <button
+                          class="btn btn-outline-danger btn-sm"
+                          (click)="onDelete(entry)"
+                          [disabled]="isSaving()"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <small class="text-muted">
+              Showing {{ ((currentPage() - 1) * pageSize()) + 1 }}-{{ Math.min(currentPage() * pageSize(), totalItems()) }} of {{ totalItems() }} entries
+            </small>
+            <nav>
+              <ul class="pagination pagination-sm mb-0">
+                <li class="page-item" [class.disabled]="currentPage() === 1">
+                  <button class="page-link" (click)="goToPage(currentPage() - 1)" [disabled]="currentPage() === 1">Previous</button>
+                </li>
+                @for (p of pageNumbers(); track p) {
+                  <li class="page-item" [class.active]="p === currentPage()">
+                    <button class="page-link" (click)="goToPage(p)">{{ p }}</button>
+                  </li>
+                }
+                <li class="page-item" [class.disabled]="currentPage() === totalPages()">
+                  <button class="page-link" (click)="goToPage(currentPage() + 1)" [disabled]="currentPage() === totalPages()">Next</button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        }
+      }
+    </div>
+  

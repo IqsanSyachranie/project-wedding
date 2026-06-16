@@ -13,10 +13,17 @@ import scheduleRoutes from "./routes/admin/schedule.routes.js";
 import cashlessRoutes from "./routes/admin/cashless.routes.js";
 import rsvpReportRoutes from "./routes/admin/rsvp-report.routes.js";
 import adminGuestbookRoutes from "./routes/admin/guestbook.routes.js";
+import invitationConfigRoutes from "./routes/admin/invitation-config.routes.js";
+import coupleInfoRoutes from "./routes/admin/couple-info.routes.js";
+import storyItemRoutes from "./routes/admin/story-item.routes.js";
+import galleryImageRoutes from "./routes/admin/gallery-image.routes.js";
+import philosophyConfigRoutes from "./routes/admin/philosophy-config.routes.js";
+import giftAddressRoutes from "./routes/admin/gift-address.routes.js";
 import rsvpRoutes from "./routes/rsvp.routes.js";
 import guestbookRoutes from "./routes/guestbook.routes.js";
 import { authSession } from "./middleware/auth-session.js";
 import { doubleCsrfProtection, invalidCsrfTokenError } from "./middleware/csrf-protection.js";
+import { invitationConfigController } from "./controllers/admin/invitation-config.controller.js";
 
 export const app = express();
 
@@ -54,6 +61,13 @@ const port = process.env.PORT || 3000;
 app.use(express.static('public')); // Simplified static path for reliability in ESM
 
 // Routes
+app.use("/api/v1/admin/invitation-config", invitationConfigRoutes);
+app.use("/api/v1/admin/couple-info", coupleInfoRoutes);
+app.use("/api/v1/admin/story-items", storyItemRoutes);
+app.use("/api/v1/admin/gallery-images", galleryImageRoutes);
+app.use("/api/v1/admin/philosophy-config", philosophyConfigRoutes);
+app.use("/api/v1/rsvp", rsvpRoutes);
+app.use("/api/v1/guestbook", guestbookRoutes);
 app.use("/api/v1/health", healthRoutes);
 app.use("/api/v1/invitation", invitationRoutes);
 app.use("/api/v1/auth", authRoutes);
@@ -62,15 +76,14 @@ app.use("/api/v1/admin/schedules", scheduleRoutes);
 app.use("/api/v1/admin/cashless-accounts", cashlessRoutes);
 app.use("/api/v1/admin/rsvp", rsvpReportRoutes);
 app.use("/api/v1/admin/guestbook", adminGuestbookRoutes);
-app.use("/api/v1/rsvp", rsvpRoutes);
-app.use("/api/v1/guestbook", guestbookRoutes);
+app.use("/api/v1/admin/gift-addresses", giftAddressRoutes);
 
 // 404 Handler
 app.use((_req, res) => {
   res.status(404).json({
     error: {
       code: "NOT_FOUND",
-      message: "The requested resource was not found."
+      message: "CACHED-TEST: The requested resource was not found."
     }
   });
 });

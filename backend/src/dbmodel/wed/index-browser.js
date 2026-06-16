@@ -140,6 +140,9 @@ exports.Prisma.VenueLocationScalarFieldEnum = {
   address: 'address',
   latitude: 'latitude',
   longitude: 'longitude',
+  popupImageUrl: 'popupImageUrl',
+  eventType: 'eventType',
+  mapZoom: 'mapZoom',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   invitationId: 'invitationId'
@@ -162,10 +165,10 @@ exports.Prisma.RSVPSubmissionScalarFieldEnum = {
   email: 'email',
   attendanceStatus: 'attendanceStatus',
   paxCount: 'paxCount',
-  idempotencyKey: 'idempotencyKey',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  invitationId: 'invitationId'
+  invitationId: 'invitationId',
+  idempotencyKey: 'idempotencyKey'
 };
 
 exports.Prisma.GuestbookEntryScalarFieldEnum = {
@@ -173,10 +176,10 @@ exports.Prisma.GuestbookEntryScalarFieldEnum = {
   name: 'name',
   message: 'message',
   isVisible: 'isVisible',
-  idempotencyKey: 'idempotencyKey',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  invitationId: 'invitationId'
+  invitationId: 'invitationId',
+  idempotencyKey: 'idempotencyKey'
 };
 
 exports.Prisma.CashlessAccountScalarFieldEnum = {
@@ -184,6 +187,110 @@ exports.Prisma.CashlessAccountScalarFieldEnum = {
   bankName: 'bankName',
   accountNumber: 'accountNumber',
   accountHolderName: 'accountHolderName',
+  bankLogoUrl: 'bankLogoUrl',
+  qrCodeUrl: 'qrCodeUrl',
+  sortOrder: 'sortOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  invitationId: 'invitationId'
+};
+
+exports.Prisma.GiftAddressScalarFieldEnum = {
+  id: 'id',
+  label: 'label',
+  recipientName: 'recipientName',
+  phone: 'phone',
+  address: 'address',
+  postalCode: 'postalCode',
+  note: 'note',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  invitationId: 'invitationId'
+};
+
+exports.Prisma.StoryImageScalarFieldEnum = {
+  id: 'id',
+  imageUrl: 'imageUrl',
+  caption: 'caption',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  storyItemId: 'storyItemId'
+};
+
+exports.Prisma.InvitationConfigScalarFieldEnum = {
+  id: 'id',
+  heroCoupleNames: 'heroCoupleNames',
+  heroOpeningLine: 'heroOpeningLine',
+  heroWeddingDateText: 'heroWeddingDateText',
+  heroBackgroundImage: 'heroBackgroundImage',
+  weddingDate: 'weddingDate',
+  primaryColor: 'primaryColor',
+  secondaryColor: 'secondaryColor',
+  backgroundColor: 'backgroundColor',
+  textColor: 'textColor',
+  backgroundMusicUrl: 'backgroundMusicUrl',
+  footerGreeting: 'footerGreeting',
+  footerClosingText: 'footerClosingText',
+  lockedLandingEnabled: 'lockedLandingEnabled',
+  lockedLandingButtonText: 'lockedLandingButtonText',
+  lockedLandingGreeting: 'lockedLandingGreeting',
+  musicEnabled: 'musicEnabled',
+  musicButtonPosition: 'musicButtonPosition',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  invitationId: 'invitationId'
+};
+
+exports.Prisma.CoupleInfoScalarFieldEnum = {
+  id: 'id',
+  groomName: 'groomName',
+  brideName: 'brideName',
+  groomParents: 'groomParents',
+  brideParents: 'brideParents',
+  greetingText: 'greetingText',
+  couplePhotoUrl: 'couplePhotoUrl',
+  groomPhotoUrl: 'groomPhotoUrl',
+  bridePhotoUrl: 'bridePhotoUrl',
+  groomSocialLink: 'groomSocialLink',
+  brideSocialLink: 'brideSocialLink',
+  bibleVerse: 'bibleVerse',
+  bibleReference: 'bibleReference',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  invitationId: 'invitationId'
+};
+
+exports.Prisma.StoryItemScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  body: 'body',
+  imageUrl: 'imageUrl',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  invitationId: 'invitationId'
+};
+
+exports.Prisma.GalleryImageScalarFieldEnum = {
+  id: 'id',
+  imageUrl: 'imageUrl',
+  caption: 'caption',
+  sortOrder: 'sortOrder',
+  aspectRatio: 'aspectRatio',
+  isFeatured: 'isFeatured',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  invitationId: 'invitationId'
+};
+
+exports.Prisma.PhilosophyConfigScalarFieldEnum = {
+  id: 'id',
+  quoteText: 'quoteText',
+  quoteMeaning: 'quoteMeaning',
+  prayerText: 'prayerText',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   invitationId: 'invitationId'
@@ -199,18 +306,20 @@ exports.Prisma.AdminUserOrderByRelevanceFieldEnum = {
   password: 'password'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 exports.Prisma.VenueLocationOrderByRelevanceFieldEnum = {
   name: 'name',
-  address: 'address'
+  address: 'address',
+  popupImageUrl: 'popupImageUrl',
+  eventType: 'eventType'
 };
 
 exports.Prisma.EventScheduleOrderByRelevanceFieldEnum = {
   title: 'title'
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
 };
 
 exports.Prisma.RSVPSubmissionOrderByRelevanceFieldEnum = {
@@ -228,7 +337,73 @@ exports.Prisma.GuestbookEntryOrderByRelevanceFieldEnum = {
 exports.Prisma.CashlessAccountOrderByRelevanceFieldEnum = {
   bankName: 'bankName',
   accountNumber: 'accountNumber',
-  accountHolderName: 'accountHolderName'
+  accountHolderName: 'accountHolderName',
+  bankLogoUrl: 'bankLogoUrl',
+  qrCodeUrl: 'qrCodeUrl'
+};
+
+exports.Prisma.GiftAddressOrderByRelevanceFieldEnum = {
+  label: 'label',
+  recipientName: 'recipientName',
+  phone: 'phone',
+  address: 'address',
+  postalCode: 'postalCode',
+  note: 'note'
+};
+
+exports.Prisma.StoryImageOrderByRelevanceFieldEnum = {
+  imageUrl: 'imageUrl',
+  caption: 'caption'
+};
+
+exports.Prisma.InvitationConfigOrderByRelevanceFieldEnum = {
+  heroCoupleNames: 'heroCoupleNames',
+  heroOpeningLine: 'heroOpeningLine',
+  heroWeddingDateText: 'heroWeddingDateText',
+  heroBackgroundImage: 'heroBackgroundImage',
+  primaryColor: 'primaryColor',
+  secondaryColor: 'secondaryColor',
+  backgroundColor: 'backgroundColor',
+  textColor: 'textColor',
+  backgroundMusicUrl: 'backgroundMusicUrl',
+  footerGreeting: 'footerGreeting',
+  footerClosingText: 'footerClosingText',
+  lockedLandingButtonText: 'lockedLandingButtonText',
+  lockedLandingGreeting: 'lockedLandingGreeting',
+  musicButtonPosition: 'musicButtonPosition'
+};
+
+exports.Prisma.CoupleInfoOrderByRelevanceFieldEnum = {
+  groomName: 'groomName',
+  brideName: 'brideName',
+  groomParents: 'groomParents',
+  brideParents: 'brideParents',
+  greetingText: 'greetingText',
+  couplePhotoUrl: 'couplePhotoUrl',
+  groomPhotoUrl: 'groomPhotoUrl',
+  bridePhotoUrl: 'bridePhotoUrl',
+  groomSocialLink: 'groomSocialLink',
+  brideSocialLink: 'brideSocialLink',
+  bibleVerse: 'bibleVerse',
+  bibleReference: 'bibleReference'
+};
+
+exports.Prisma.StoryItemOrderByRelevanceFieldEnum = {
+  title: 'title',
+  body: 'body',
+  imageUrl: 'imageUrl'
+};
+
+exports.Prisma.GalleryImageOrderByRelevanceFieldEnum = {
+  imageUrl: 'imageUrl',
+  caption: 'caption',
+  aspectRatio: 'aspectRatio'
+};
+
+exports.Prisma.PhilosophyConfigOrderByRelevanceFieldEnum = {
+  quoteText: 'quoteText',
+  quoteMeaning: 'quoteMeaning',
+  prayerText: 'prayerText'
 };
 exports.AttendanceStatus = exports.$Enums.AttendanceStatus = {
   ATTENDING: 'ATTENDING',
@@ -242,7 +417,14 @@ exports.Prisma.ModelName = {
   EventSchedule: 'EventSchedule',
   RSVPSubmission: 'RSVPSubmission',
   GuestbookEntry: 'GuestbookEntry',
-  CashlessAccount: 'CashlessAccount'
+  CashlessAccount: 'CashlessAccount',
+  GiftAddress: 'GiftAddress',
+  StoryImage: 'StoryImage',
+  InvitationConfig: 'InvitationConfig',
+  CoupleInfo: 'CoupleInfo',
+  StoryItem: 'StoryItem',
+  GalleryImage: 'GalleryImage',
+  PhilosophyConfig: 'PhilosophyConfig'
 };
 
 /**

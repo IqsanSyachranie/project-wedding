@@ -1,0 +1,198 @@
+@use "styles/abstracts" as *;
+
+.footer {
+  position: relative;
+  padding: $space-lg $space-sm;
+  overflow: hidden;
+  background-color: var(--color-dark);
+  color: var(--color-cream);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 40% 40%, rgba(212,175,55,0.15) 1px, transparent 1px),
+      radial-gradient(circle at 60% 60%, rgba(212,175,55,0.1) 1px, transparent 1px);
+    background-size: 4px 4px, 6px 6px;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: $space-md;
+
+    &::before,
+    &::after {
+      content: '';
+      height: 2px;
+      width: 4rem;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.6), rgba(212, 175, 55, 0.2));
+      border-radius: 9999px;
+    }
+
+    &::after {
+      background: linear-gradient(270deg, rgba(212, 175, 55, 0.6), rgba(212, 175, 55, 0.2));
+    }
+  }
+
+  &__divider-diamond {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--color-gold);
+    transform: rotate(45deg);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: $space-md;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+      align-items: start;
+    }
+  }
+
+  &__col {
+    text-align: center;
+  }
+
+  &__names {
+    font-family: $font-family-heading;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    color: var(--color-gold);
+    margin: 0 0 1rem;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  &__tagline {
+    font-family: $font-family-body;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    color: var(--color-cream);
+    opacity: 0.8;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  &__quote-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  &__quote-text {
+    font-family: $font-family-heading;
+    font-style: italic;
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    color: var(--color-gold);
+    line-height: 1.8;
+    margin: 0 0 0.5rem;
+  }
+
+  &__quote-source {
+    font-family: $font-family-heading;
+    font-size: 0.9rem;
+    color: var(--color-cream);
+    opacity: 0.7;
+    margin: 0;
+    font-style: normal;
+  }
+
+  &__contact-label {
+    font-family: $font-family-body;
+    font-size: 0.85rem;
+    color: var(--color-cream);
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  &__socials {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--cream);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      background-color: var(--color-gold);
+      color: var(--color-dark);
+      transform: translateY(-2px);
+    }
+  }
+
+  &__scroll-top {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-dark);
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+    }
+  }
+
+  &__bottom {
+    text-align: center;
+    border-top: 1px solid rgba(247, 237, 217, 0.15);
+    padding-top: 1.5rem;
+  }
+
+  &__thanks {
+    font-family: $font-family-heading;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--color-cream);
+    opacity: 0.85;
+    margin: 0 0 1rem;
+  }
+
+  &__privacy {
+    font-family: $font-family-body;
+    font-size: 0.75rem;
+    color: var(--color-cream);
+    opacity: 0.5;
+    margin: 0;
+  }
+}

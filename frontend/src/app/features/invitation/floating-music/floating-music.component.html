@@ -1,0 +1,25 @@
+@if (isVisible()) {
+  <button
+    type="button"
+    class="floating-music"
+    [class.floating-music--playing]="isPlaying()"
+    (click)="toggle()"
+    [attr.aria-label]="isPlaying() ? 'Jeda musik' : 'Putar musik'"
+  >
+    <span class="floating-music__disc" aria-hidden="true">
+      <span class="floating-music__disc-inner"></span>
+    </span>
+    <span class="floating-music__note" aria-hidden="true">&#9836;</span>
+    @if (isPlaying()) {
+      <span class="floating-music__ripple" aria-hidden="true"></span>
+    }
+  </button>
+
+  <audio
+    #audioPlayer
+    [src]="musicUrl() ?? ''"
+    loop
+    preload="auto"
+    style="display: none;"
+  ></audio>
+}

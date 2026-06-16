@@ -2,32 +2,32 @@
 
 body {
   font-family: $font-family-body;
-  font-size: fluid(16px, 18px);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
   line-height: 1.6;
-  color: var(--color-ink);
+  color: var(--color-dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-heading;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
   margin-bottom: $space-xs;
-  color: var(--color-gold);
+  color: var(--color-primary);
 }
 
 h1 {
-  font-size: clamp(2.75rem, 5vw, 4.5rem);
+  font-size: clamp(2.75rem, 6vw, 5.5rem);
   letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: fluid(32px, 48px);
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
 h3 {
-  font-size: fluid(24px, 32px);
+  font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
 p {
@@ -42,3 +42,11 @@ p {
 .gold-foil {
   @include gold-shine;
 }
+
+.text-cream { color: var(--color-cream); }
+.text-gold { color: var(--color-gold); }
+.text-primary { color: var(--color-primary); }
+.text-dark { color: var(--color-dark); }
+.bg-dark { background-color: var(--color-dark); }
+.bg-cream { background-color: var(--color-cream); }
+.bg-primary { background-color: var(--color-primary); }

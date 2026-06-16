@@ -1,0 +1,90 @@
+
+    <div class="card p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h3 class="h5 color-amber mb-1">RSVP Management</h3>
+          <p class="small opacity-75 mb-0">View and search all guest RSVP submissions.</p>
+        </div>
+      </div>
+
+      @if (error()) {
+        <div class="alert alert-danger py-2 small">{{ error() }}</div>
+      }
+
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control form-control-dark"
+          placeholder="Search by guest name..."
+          [ngModel]="searchQuery()"
+          (ngModelChange)="onSearchChange($event)"
+        />
+      </div>
+
+      @if (isLoading()) {
+        <div class="text-center py-5">
+          <div class="spinner-border text-amber" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table class="table table-dark table-striped table-hover mb-0">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Attendance</th>
+                <th>Pax</th>
+                <th>Contact</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (rsvp of rsvps(); track rsvp.id; let i = $index) {
+                <tr>
+                  <td class="opacity-50">{{ (currentPage() - 1) * pageSize() + i + 1 }}</td>
+                  <td>{{ rsvp.name }}</td>
+                  <td>
+                    @if (rsvp.attendanceStatus === 'ATTENDING') {
+                      <span class="badge bg-success">Hadir</span>
+                    } @else {
+                      <span class="badge bg-secondary">Tidak Hadir</span>
+                    }
+                  </td>
+                  <td>{{ rsvp.paxCount }}</td>
+                  <td class="small opacity-75">{{ rsvp.email }}</td>
+                  <td class="small">{{ rsvp.createdAt | date: 'dd MMM yyyy' }}</td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="6" class="text-center py-4 opacity-50">No RSVP submissions found.</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <span class="small opacity-75">
+            Showing {{ totalItems() > 0 ? (currentPage() - 1) * pageSize() + 1 : 0 }}-{{ Math.min(currentPage() * pageSize(), totalItems()) }} of {{ totalItems() }} entries
+          </span>
+          <nav>
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item" [class.disabled]="currentPage() <= 1">
+                <button class="page-link" (click)="goToPage(currentPage() - 1)" [disabled]="currentPage() <= 1">Previous</button>
+              </li>
+              @for (p of pageNumbers(); track p) {
+                <li class="page-item" [class.active]="p === currentPage()">
+                  <button class="page-link" (click)="goToPage(p)">{{ p }}</button>
+                </li>
+              }
+              <li class="page-item" [class.disabled]="currentPage() >= totalPages()">
+                <button class="page-link" (click)="goToPage(currentPage() + 1)" [disabled]="currentPage() >= totalPages()">Next</button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      }
+    </div>
+  

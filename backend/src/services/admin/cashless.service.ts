@@ -7,7 +7,7 @@ export class CashlessService {
   async listAll() {
     return prisma.cashlessAccount.findMany({
       where: { invitationId: INVITATION_ID },
-      orderBy: { createdAt: 'asc' },
+      orderBy: { sortOrder: 'asc' },
     });
   }
 

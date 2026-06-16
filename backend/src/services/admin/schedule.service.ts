@@ -19,7 +19,10 @@ export class ScheduleService {
   async create(data: { title: string; date: string; startTime: string; endTime: string }) {
     return prisma.eventSchedule.create({
       data: {
-        ...data,
+        title: data.title,
+        date: new Date(data.date),
+        startTime: new Date(data.startTime),
+        endTime: new Date(data.endTime),
         invitationId: INVITATION_ID,
       },
     });
@@ -28,7 +31,12 @@ export class ScheduleService {
   async update(id: number, data: { title: string; date: string; startTime: string; endTime: string }) {
     return prisma.eventSchedule.update({
       where: { id },
-      data,
+      data: {
+        title: data.title,
+        date: new Date(data.date),
+        startTime: new Date(data.startTime),
+        endTime: new Date(data.endTime),
+      },
     });
   }
 

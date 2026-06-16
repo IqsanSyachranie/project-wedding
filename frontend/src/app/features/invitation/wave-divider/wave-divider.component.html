@@ -1,0 +1,38 @@
+<div class="wave-divider" [class.wave-divider--flip]="flip()">
+  <svg
+    class="wave-divider__svg"
+    viewBox="0 0 1440 120"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+    <defs>
+      <linearGradient id="waveGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" [attr.stop-color]="topColor()" />
+        <stop offset="100%" [attr.stop-color]="bottomColor()" />
+      </linearGradient>
+    </defs>
+
+    <!-- Back wave -->
+    <path
+      class="wave-divider__path wave-divider__path--back"
+      d="M0,40 C240,100 480,0 720,40 C960,80 1200,20 1440,60 L1440,120 L0,120 Z"
+      [attr.fill]="middleColor()"
+      opacity="0.25"
+    />
+
+    <!-- Middle wave -->
+    <path
+      class="wave-divider__path wave-divider__path--middle"
+      d="M0,60 C360,10 600,90 900,50 C1140,20 1320,70 1440,40 L1440,120 L0,120 Z"
+      [attr.fill]="middleColor()"
+      opacity="0.45"
+    />
+
+    <!-- Front wave -->
+    <path
+      class="wave-divider__path wave-divider__path--front"
+      d="M0,80 C180,30 540,110 810,60 C1080,10 1260,90 1440,50 L1440,120 L0,120 Z"
+      [attr.fill]="topColor()"
+    />
+  </svg>
+</div>

@@ -7,24 +7,3 @@ backend/node_modules/
 .env
 backend/.env
 
-# Build outputs
-dist/
-frontend/dist/
-.angular/
-
-# Prisma
-backend/prisma/*.db
-backend/prisma/*.db-journal
-
-# Logs
-npm-debug.log*
-yarn-error.log*
-.bmad/logs/
-
-# BMAD Files
-_bmad/
-_bmad-*/
-.agent/
-.agents/
-.github/
-docs/

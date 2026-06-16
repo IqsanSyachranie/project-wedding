@@ -1,0 +1,47 @@
+<section
+  class="hero"
+  [class.hero--revealed]="revealed()"
+  [style.backgroundImage]="heroBackgroundImage() ? 'url(' + heroBackgroundImage() + ')' : null"
+  aria-label="Pembukaan undangan pernikahan"
+>
+  <!-- Floating particles -->
+  <div class="hero__particles" aria-hidden="true">
+    <div class="ulos-particle-1"></div>
+    <div class="ulos-particle-2"></div>
+    <div class="ulos-particle-3"></div>
+  </div>
+
+  <div class="hero__inner">
+    <!-- Top divider ornament -->
+    <div class="hero__divider" aria-hidden="true">
+      <span class="hero__divider-line hero__divider-line--left"></span>
+      <span class="hero__divider-diamond"></span>
+      <span class="hero__divider-line hero__divider-line--right"></span>
+    </div>
+
+    <p class="hero__label">Undangan Pernikahan</p>
+
+    <h1 class="hero__names">{{ coupleNames() }}</h1>
+
+    <div class="hero__underline" aria-hidden="true"></div>
+
+    <p class="hero__opening">{{ openingLine() }}</p>
+
+    <time class="hero__date" [attr.datetime]="dataService.config()?.weddingDate">{{ weddingDate() }}</time>
+
+    <div class="hero__divider" aria-hidden="true" style="margin-top: 2rem;">
+      <span class="hero__divider-line hero__divider-line--left"></span>
+      <span class="hero__divider-diamond"></span>
+      <span class="hero__divider-line hero__divider-line--right"></span>
+    </div>
+  </div>
+
+  <div
+    class="hero__scroll-hint"
+    [class.hero__scroll-hint--hidden]="scrolled()"
+    aria-hidden="true"
+  >
+    <span class="hero__scroll-icon" aria-hidden="true">&#8595;</span>
+    <span class="hero__scroll-label">Geser ke bawah untuk melanjutkan</span>
+  </div>
+</section>

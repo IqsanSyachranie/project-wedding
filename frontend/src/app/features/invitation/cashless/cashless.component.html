@@ -1,0 +1,153 @@
+<section class="cashless" [class.cashless--revealed]="revealed()" aria-label="Tanda kasih dan hadiah digital">
+  <div class="cashless__inner">
+    <div class="cashless__header">
+      <div class="cashless__divider" aria-hidden="true">
+        <span class="cashless__divider-diamond"></span>
+      </div>
+      <h2 class="cashless__heading">Tanda Kasih</h2>
+      <div class="cashless__underline" aria-hidden="true"></div>
+      <p class="cashless__subheading">Doa restu Anda adalah hadiah yang paling berharga</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="cashless__tabs" role="tablist" aria-label="Tanda kasih">
+      <button
+        type="button"
+        class="cashless__tab"
+        [class.cashless__tab--active]="activeTab() === 'digital'"
+        (click)="activeTab.set('digital')"
+        [attr.aria-selected]="activeTab() === 'digital'"
+        role="tab"
+      >
+        <span aria-hidden="true">&#128179;</span> Digital
+      </button>
+      <button
+        type="button"
+        class="cashless__tab"
+        [class.cashless__tab--active]="activeTab() === 'physical'"
+        (click)="activeTab.set('physical')"
+        [attr.aria-selected]="activeTab() === 'physical'"
+        role="tab"
+      >
+        <span aria-hidden="true">&#127873;</span> Kirim Kado
+      </button>
+    </div>
+
+    <!-- Digital Tab -->
+    @if (activeTab() === 'digital') {
+      <div class="cashless__panel" role="tabpanel">
+        @if (isLoading()) {
+          <div class="cashless__card cashless__card--skeleton glass" aria-hidden="true">
+            <div class="cashless__skeleton cashless__skeleton--bank"></div>
+            <div class="cashless__skeleton cashless__skeleton--number"></div>
+            <div class="cashless__skeleton cashless__skeleton--holder"></div>
+          </div>
+        } @else if (error() && accounts().length === 0) {
+          <div class="cashless__card cashless__card--error glass">
+            <p class="cashless__error-text">{{ error() }}</p>
+            <button type="button" class="cashless__retry-btn" (click)="retry()">Coba Lagi</button>
+          </div>
+        } @else if (accounts().length === 0) {
+          <div class="cashless__card glass">
+            <div class="cashless__icon" aria-hidden="true">&#9829;</div>
+            <p class="cashless__text">
+              Informasi rekening akan ditampilkan di sini.<br>
+              Doa restu dan dukungan Anda adalah hadiah yang paling berharga.
+            </p>
+          </div>
+        } @else {
+          @for (account of accounts(); track account.id) {
+            <div class="cashless__card glass">
+              <div class="cashless__card-header">
+                @if (account.bankLogoUrl) {
+                  <img [src]="account.bankLogoUrl" [alt]="account.bankName" class="cashless__bank-logo" />
+                }
+                <p class="cashless__bank-name">{{ account.bankName }}</p>
+              </div>
+
+              @if (account.qrCodeUrl) {
+                <div class="cashless__qr-wrapper">
+                  <img [src]="account.qrCodeUrl" alt="QR Code" class="cashless__qr-img" />
+                </div>
+              }
+
+              <p class="cashless__account-number">{{ account.accountNumber }}</p>
+              <p class="cashless__holder-name">a.n. {{ account.accountHolderName }}</p>
+
+              <button
+                type="button"
+                class="cashless__copy-btn"
+                [class.cashless__copy-btn--copied]="copiedId() === account.id"
+                (click)="copyAccountNumber(account)"
+                [attr.aria-label]="(copiedId() === account.id ? 'Tersalin' : 'Salin nomor rekening') + ' ' + account.bankName"
+              >
+                @if (copiedId() === account.id) {
+                  <span class="cashless__copy-feedback">
+                    <i class="bi bi-check-lg" aria-hidden="true"></i> Tersalin!
+                  </span>
+                } @else {
+                  <span class="cashless__copy-trigger">
+                    <i class="bi bi-clipboard" aria-hidden="true"></i> Salin Nomor Rekening
+                  </span>
+                }
+              </button>
+            </div>
+          }
+        }
+      </div>
+    }
+
+    <!-- Physical Gift Tab -->
+    @if (activeTab() === 'physical') {
+      <div class="cashless__panel" role="tabpanel">
+        @if (giftAddresses().length === 0) {
+          <div class="cashless__card glass">
+            <div class="cashless__icon" aria-hidden="true">&#127873;</div>
+            <p class="cashless__text">
+              Informasi alamat kirim kado akan ditampilkan di sini.<br>
+              Doa restu dan dukungan Anda adalah hadiah yang paling berharga.
+            </p>
+          </div>
+        } @else {
+          @for (addr of giftAddresses(); track addr.id) {
+            <div class="cashless__card glass">
+              <p class="cashless__bank-name">{{ addr.label }}</p>
+              <div class="cashless__address-block">
+                <p class="cashless__address-name">{{ addr.recipientName }}</p>
+                <p class="cashless__address-text">{{ addr.address }}</p>
+                @if (addr.postalCode) {
+                  <p class="cashless__address-meta">Kode Pos: {{ addr.postalCode }}</p>
+                }
+                @if (addr.phone) {
+                  <p class="cashless__address-meta">Tel: {{ addr.phone }}</p>
+                }
+                @if (addr.note) {
+                  <p class="cashless__address-note">{{ addr.note }}</p>
+                }
+              </div>
+
+              <button
+                type="button"
+                class="cashless__copy-btn"
+                [class.cashless__copy-btn--copied]="copiedId() === (addr.id + 10000)"
+                (click)="copyAddress(addr)"
+              >
+                @if (copiedId() === (addr.id + 10000)) {
+                  <span class="cashless__copy-feedback">
+                    <i class="bi bi-check-lg" aria-hidden="true"></i> Tersalin!
+                  </span>
+                } @else {
+                  <span class="cashless__copy-trigger">
+                    <i class="bi bi-clipboard" aria-hidden="true"></i> Salin Alamat
+                  </span>
+                }
+              </button>
+            </div>
+          }
+        }
+      </div>
+    }
+
+    
+  </div>
+</section>

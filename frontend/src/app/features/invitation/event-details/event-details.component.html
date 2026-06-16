@@ -1,0 +1,161 @@
+<section class="event-details" [class.event-details--revealed]="revealed()"
+  aria-label="Detail waktu dan lokasi acara">
+  <div class="event-details__inner">
+    <div class="event-details__title-wrapper">
+      <div class="event-details__divider" aria-hidden="true">
+        <span class="event-details__divider-diamond"></span>
+      </div>
+      <h2 class="event-details__heading">Waktu &amp; Tempat</h2>
+      <div class="event-details__underline" aria-hidden="true"></div>
+      <p class="event-details__subheading">Dengan hormat, kami sampaikan waktu
+        dan lokasi pernikahan</p>
+    </div>
+
+    @if (dataLoading()) {
+    <div class="event-details__loading">Memuat data...</div>
+    }
+
+    @if (!dataLoading() && schedules().length > 0) {
+    <div class="event-details__countdown">
+      <div class="event-details__countdown-inner">
+        <p class="event-details__countdown-label">Menghitung Hari Menuju Hari
+          Bahagia</p>
+        <div class="event-details__countdown-grid">
+          <div class="event-details__countdown-item">
+            <div class="event-details__countdown-value">{{ countdownDays()
+              }}</div>
+            <div class="event-details__countdown-unit">Hari</div>
+          </div>
+          <div class="event-details__countdown-item">
+            <div class="event-details__countdown-value">{{ countdownHours()
+              }}</div>
+            <div class="event-details__countdown-unit">Jam</div>
+          </div>
+          <div class="event-details__countdown-item">
+            <div class="event-details__countdown-value">{{ countdownMinutes()
+              }}</div>
+            <div class="event-details__countdown-unit">Menit</div>
+          </div>
+          <div class="event-details__countdown-item">
+            <div class="event-details__countdown-value">{{ countdownSeconds()
+              }}</div>
+            <div class="event-details__countdown-unit">Detik</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
+    @if (!dataLoading()) {
+    <div class="event-details__cards">
+      @for (schedule of schedules(); track schedule.id; let i = $index) {
+      <div class="event-details__card">
+        <div class="event-details__card-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+            fill="currentColor" viewBox="0 0 256 256">
+            @if (schedule.title.toLowerCase().includes('akad')) {
+            <path
+              d="M254.3,107.91,228.78,56.85a16,16,0,0,0-21.47-7.15L182.44,62.13,130.05,48.27a8.14,8.14,0,0,0-4.1,0L73.56,62.13,48.69,49.7a16,16,0,0,0-21.47,7.15L1.7,107.9a16,16,0,0,0,7.15,21.47l27,13.51,55.49,39.63a8.06,8.06,0,0,0,2.71,1.25l64,16a8,8,0,0,0,7.6-2.1l40-40,15.08-15.08,26.42-13.21a16,16,0,0,0,7.15-21.46Zm-54.89,33.37L165,113.72a8,8,0,0,0-10.68.61C136.51,132.27,116.66,130,104,122L147.24,80h31.81l27.21,54.41Zm-41.87,41.86L99.42,168.61l-49.2-35.14,28-56L128,64.28l9.8,2.59-45,43.68-.08.09a16,16,0,0,0,2.72,24.81c20.56,13.13,45.37,11,64.91-5L188,152.66Zm-25.72,34.8a8,8,0,0,1-7.75,6.06,8.13,8.13,0,0,1-1.95-.24L80.41,213.33a7.89,7.89,0,0,1-2.71-1.25L51.35,193.26a8,8,0,0,1,9.3-13l25.11,17.94L126,208.24A8,8,0,0,1,131.82,217.94Z"></path>
+            } @else {
+            <path
+              d="M213.93,213.94l-17.65,4.73-10.42-38.89a40.06,40.06,0,0,0,20.77-46.14c-12.6-47-38.78-88.22-39.89-89.95a8,8,0,0,0-8.68-3.45L136.2,45.71c0-8.25-.18-13.43-.21-14.08a8,8,0,0,0-6.05-7.39l-32-8a8,8,0,0,0-8.68,3.45c-1.11,1.73-27.29,42.93-39.89,90a40.06,40.06,0,0,0,20.77,46.14L59.72,194.67l-17.65-4.73a8,8,0,0,0-4.14,15.46l48,12.86a8.23,8.23,0,0,0,2.07.27,8,8,0,0,0,2.07-15.73l-14.9-4,10.42-38.89c.81.05,1.61.08,2.41.08a40.12,40.12,0,0,0,37-24.88c1.18,6.37,2.6,12.82,4.31,19.22A40.08,40.08,0,0,0,168,184c.8,0,1.6,0,2.41-.08l10.42,38.89-14.9,4A8,8,0,0,0,168,242.53a8.23,8.23,0,0,0,2.07-.27l48-12.86a8,8,0,0,0-4.14-15.46ZM156.22,57.19c2.78,4.7,7.23,12.54,12.2,22.46L136,87.77c-.42-10-.38-18.25-.25-23.79,0-.56.05-1.12.08-1.68Zm-56.44-24,20.37,5.09c.06,4.28,0,10.67-.21,18.47-.06,1.21-.16,3.19-.23,5.84,0,1-.1,2-.16,3L86.69,57.43C92,46.67,96.84,38.16,99.78,33.19Zm85.06,10.39a8,8,0,0,1,3.58-10.74l16-8a8,8,0,1,1,7.16,14.32l-16,8a8,8,0,0,1-10.74-3.58ZM232,72a8,8,0,0,1-8,8H208a8,8,0,0,1,0-16h16A8,8,0,0,1,232,72ZM32.84,20.42a8,8,0,0,1,10.74-3.58l16,8a8,8,0,0,1-7.16,14.32l-16-8A8,8,0,0,1,32.84,20.42ZM40,72H24a8,8,0,0,1,0-16H40a8,8,0,0,1,0,16Z"></path>
+            }
+          </svg>
+        </div>
+        <h3 class="event-details__card-title">{{ schedule.title }}</h3>
+
+        <div class="event-details__card-details">
+          <div class="event-details__detail-row">
+            <svg class="event-details__detail-icon"
+              xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              fill="currentColor" viewBox="0 0 256 256">
+              <path
+                d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,64V56a8,8,0,0,1,16,0v8a8,8,0,0,1-16,0Zm82.56,103.07a143.52,143.52,0,0,1-24.77,16.51,4,4,0,0,1-3.58,0,143.52,143.52,0,0,1-24.77-16.51C84.56,153,76,138.51,76,124a28,28,0,0,1,52-14.41A28,28,0,0,1,180,124C180,138.51,171.44,153,154.56,167.07ZM184,64a8,8,0,0,1-16,0V56a8,8,0,0,1,16,0Z"></path>
+            </svg>
+            <div>
+              <p class="event-details__detail-text">{{ formatDate(schedule.date)
+                }}</p>
+              <p class="event-details__detail-sub">Pukul {{
+                formatTime(schedule.startTime) }} - {{
+                formatTime(schedule.endTime) }}</p>
+            </div>
+          </div>
+
+          @let venueForSchedule = getVenueForSchedule(i);
+          @if (venueForSchedule) {
+          <div class="event-details__detail-row">
+            <svg class="event-details__detail-icon"
+              xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              fill="currentColor" viewBox="0 0 256 256">
+              <path
+                d="M228.12,145.14,192,123.47V104a8,8,0,0,0-4-7L136,67.36V48h16a8,8,0,0,0,0-16H136V16a8,8,0,0,0-16,0V32H104a8,8,0,0,0,0,16h16V67.36L68,97.05a8,8,0,0,0-4,7v19.47L27.88,145.14A8,8,0,0,0,24,152v64a8,8,0,0,0,8,8h72a8,8,0,0,0,8-8V168a16,16,0,0,1,32,0v48a8,8,0,0,0,8,8h72a8,8,0,0,0,8-8V152A8,8,0,0,0,228.12,145.14ZM64,208H40V156.53l24-14.4Zm152,0H192V142.13l24,14.4Z"></path>
+            </svg>
+            <div>
+              <p class="event-details__detail-text">{{ venueForSchedule.name
+                }}</p>
+              <p class="event-details__detail-sub">{{ venueForSchedule.address
+                }}</p>
+            </div>
+          </div>
+          }
+        </div>
+
+        <div class="event-details__calendar-actions">
+          <button type="button"
+            class="event-details__calendar-btn"
+            (click)="addToCalendar(schedule)">
+            @if (copiedScheduleId() === schedule.id) {
+            &#10003; Acara tersimpan!
+            } @else {
+            &#128197; Tambah ke Kalender
+            }
+          </button>
+          @if (venueForSchedule) {
+          <a
+            [href]="getGoogleMapsLink(venueForSchedule.latitude, venueForSchedule.longitude)"
+            target="_blank" rel="noopener noreferrer"
+            class="event-details__calendar-btn event-details__calendar-btn--location"
+            [attr.aria-label]="'Buka Google Maps - ' + venueForSchedule.name">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+              fill="currentColor" viewBox="0 0 256 256" style="flex-shrink:0;">
+              <path
+                d="M200,224H150.54A266.56,266.56,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25a88,88,0,0,0-176,0c0,31.4,14.51,64.68,42,96.25A266.56,266.56,0,0,0,105.46,224H56a8,8,0,0,0,0,16H200a8,8,0,0,0,0-16ZM128,72a32,32,0,1,1-32,32A32,32,0,0,1,128,72Z"></path>
+            </svg>
+            Lihat Lokasi
+          </a>
+          }
+        </div>
+      </div>
+      }
+    </div>
+    }
+
+    @let venue = venues()[0];
+
+    @if (!dataLoading() && venue && !mapFailed()) {
+    <div class="event-details__map-wrapper">
+      <div #mapContainer class="event-details__map-container"></div>
+    </div>
+    }
+
+    @if (!dataLoading() && venue && mapFailed()) {
+    <div class="event-details__card event-details__card--fallback">
+      <p class="event-details__card-title">{{ venue.name }}</p>
+      <p class="event-details__card-address">{{ venue.address }}</p>
+      <a [href]="getGoogleMapsLink(venue.latitude, venue.longitude)"
+        target="_blank" rel="noopener noreferrer"
+        class="event-details__card-action">
+        Buka di Google Maps &rarr;
+      </a>
+    </div>
+    }
+
+    @if (!dataLoading() && !venue && schedules().length === 0) {
+    <div class="event-details__empty">Belum ada data lokasi dan jadwal.</div>
+    }
+
+    @if (dataError(); as error) {
+    <div class="event-details__error">{{ error }}</div>
+    }
+  </div>
+</section>

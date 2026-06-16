@@ -1,0 +1,37 @@
+.wave-divider {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  overflow: hidden;
+
+  &__svg {
+    display: block;
+    width: 100%;
+    height: clamp(60px, 8vw, 120px);
+  }
+
+  &__path {
+    transition: fill 0.8s ease;
+
+    &--back {
+      animation: waveFloat 8s ease-in-out infinite alternate;
+    }
+
+    &--middle {
+      animation: waveFloat 6s ease-in-out infinite alternate-reverse;
+    }
+
+    &--front {
+      animation: waveFloat 5s ease-in-out infinite alternate;
+    }
+  }
+
+  &--flip {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes waveFloat {
+  from { transform: translateX(-12px); }
+  to { transform: translateX(12px); }
+}

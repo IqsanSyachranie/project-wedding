@@ -1,0 +1,70 @@
+@if (!showContent()) {
+  <app-preloader />
+}
+
+@if (showLockedLanding()) {
+  <app-locked-landing
+    [coupleNames]="dataService.config()?.heroCoupleNames ?? ''"
+    [greeting]="dataService.config()?.lockedLandingGreeting ?? ''"
+    [buttonText]="dataService.config()?.lockedLandingButtonText ?? 'Buka Undangan'"
+    [backgroundImage]="dataService.config()?.heroBackgroundImage ?? null"
+    [weddingDate]="dataService.config()?.weddingDate ?? null"
+    [groomPhotoUrl]="dataService.coupleInfo()?.groomPhotoUrl ?? null"
+    [bridePhotoUrl]="dataService.coupleInfo()?.bridePhotoUrl ?? null"
+    [groomName]="dataService.coupleInfo()?.groomName ?? null"
+    [brideName]="dataService.coupleInfo()?.brideName ?? null"
+    (unlocked)="onLandingUnlocked()"
+  />
+}
+
+@if (showInvitation()) {
+  <main class="invitation-content">
+    <app-hero />
+    <!-- <app-countdown /> -->
+
+    <!-- <app-wave-divider
+      [topColor]="'var(--color-cream)'"
+      [bottomColor]="'var(--color-cream)'"
+      [middleColor]="'var(--color-gold)'"
+    /> -->
+
+    <app-couple />
+
+    <!-- <app-wave-divider
+      [topColor]="'var(--color-cream)'"
+      [bottomColor]="'var(--color-cream)'"
+      [middleColor]="'var(--color-gold)'"
+      [flip]="true"
+    /> -->
+
+    <!-- <app-story /> -->
+
+    <!-- <app-wave-divider
+      [topColor]="'var(--color-cream)'"
+      [bottomColor]="'var(--color-cream)'"
+      [middleColor]="'var(--color-gold)'"
+    /> -->
+
+    <!-- <app-philosophy /> -->
+
+    <app-event-details />
+
+    <!-- <app-wave-divider
+      [topColor]="'var(--color-cream)'"
+      [bottomColor]="'var(--color-cream)'"
+      [middleColor]="'var(--color-gold)'"
+      [flip]="true"
+    /> -->
+
+    <app-gallery />
+    <app-guestbook />
+    <app-rsvp />
+    <app-cashless />
+    <app-footer />
+
+    <app-floating-music
+      [musicUrl]="dataService.config()?.backgroundMusicUrl ?? null"
+      [enabled]="dataService.config()?.musicEnabled ?? false"
+    />
+  </main>
+}

@@ -1,0 +1,97 @@
+<section class="story" [class.story--revealed]="revealed()" aria-label="Kisah perjalanan mempelai">
+  <div class="story__inner">
+    <div class="story__header">
+      <div class="story__divider" aria-hidden="true">
+        <span class="story__divider-diamond"></span>
+      </div>
+      <h2 class="story__heading">Kisah Kami</h2>
+      <div class="story__underline" aria-hidden="true"></div>
+      <p class="story__subheading">Perjalanan cinta yang membawa kami menuju bahtera pernikahan</p>
+    </div>
+
+    @if (storyItems().length > 0) {
+      <!-- Tab Navigation -->
+      <nav class="story__tabs" role="tablist" aria-label="Kisah kami">
+        @for (item of storyItems(); track item.id; let i = $index) {
+          <button
+            type="button"
+            class="story__tab"
+            [class.story__tab--active]="activeTab() === i"
+            (click)="setTab(i)"
+            [attr.aria-selected]="activeTab() === i"
+            role="tab"
+          >
+            {{ item.title }}
+          </button>
+        }
+      </nav>
+
+      <!-- Tab Panels -->
+      @for (item of storyItems(); track item.id; let i = $index) {
+        @if (activeTab() === i) {
+          <div class="story__panel" role="tabpanel">
+            <!-- Image Carousel -->
+            @let images = getImagesForStory(i);
+            @if (images.length > 0) {
+              <div class="story__carousel">
+                <div class="story__carousel-track">
+                  @for (img of images; track $index; let j = $index) {
+                    <div
+                      class="story__carousel-slide"
+                      [class.story__carousel-slide--active]="getActiveImage(i) === j"
+                      (click)="openLightbox(img.imageUrl)"
+                    >
+                      <img [src]="img.imageUrl" [alt]="img.caption ?? item.title" loading="lazy" />
+                    </div>
+                  }
+                </div>
+
+                @if (images.length > 1) {
+                  <div class="story__carousel-dots">
+                    @for (img of images; track $index; let j = $index) {
+                      <button
+                        type="button"
+                        class="story__carousel-dot"
+                        [class.story__carousel-dot--active]="getActiveImage(i) === j"
+                        (click)="setImage(i, j); $event.stopPropagation()"
+                        [attr.aria-label]="'Lihat foto ' + (j + 1)"
+                      ></button>
+                    }
+                  </div>
+                }
+              </div>
+            }
+
+            <div class="story__panel-content">
+              <h3 class="story__panel-title">{{ item.title }}</h3>
+              <p class="story__panel-body">{{ item.body }}</p>
+            </div>
+          </div>
+        }
+      }
+    } @else {
+      <div class="story__fallback">
+        <div class="story__panel-content">
+          <h3 class="story__panel-title">Pertama Bertemu</h3>
+          <p class="story__panel-body">
+            Berawal dari sebuah pertemuan yang tak terduga, hati kami mulai bersatu dalam ikatan
+            persahabatan yang kemudian tumbuh menjadi cinta. Setiap momen bersama terasa begitu berarti.
+          </p>
+        </div>
+      </div>
+    }
+
+    </div>
+
+  <!-- Lightbox -->
+  @if (lightboxOpen()) {
+    <div class="story__lightbox" (click)="closeLightbox()">
+      <button type="button" class="story__lightbox-close" (click)="closeLightbox(); $event.stopPropagation()" aria-label="Tutup">
+        &times;
+      </button>
+      @if (lightboxImageUrl()) {
+        <img [src]="lightboxImageUrl()" alt="Preview" class="story__lightbox-img" />
+      }
+    </div>
+  }
+</section>

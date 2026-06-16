@@ -1,0 +1,102 @@
+.editor-container {
+  max-width: 800px;
+  color: #EEE8DE;
+}
+
+.editor-heading {
+  margin-bottom: 1rem;
+  color: #C8913D;
+}
+
+.editor-loading,
+.editor-error,
+.editor-success {
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.editor-error {
+  background: #3a1a1a;
+  color: #f0b0a0;
+  border: 1px solid #A94D3F;
+}
+
+.editor-success {
+  background: #1a3a2e;
+  color: #a8e6cf;
+  border: 1px solid #2F8C6B;
+}
+
+.editor-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+fieldset {
+  border: 1px solid #3d4451;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #181A1F;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 0.5rem;
+  color: #C8913D;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #EEE8DE;
+}
+
+input[type="text"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #3d4451;
+  border-radius: 0.25rem;
+  background-color: #181A1F;
+  color: #EEE8DE;
+}
+
+input[type="color"] {
+  height: 2.5rem;
+  padding: 0.25rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6c757d;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background: #C8913D;
+  color: #181A1F;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #b87d2f;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

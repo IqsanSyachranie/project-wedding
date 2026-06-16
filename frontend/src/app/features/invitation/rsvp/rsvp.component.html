@@ -1,0 +1,134 @@
+<section class="rsvp" [class.rsvp--revealed]="revealed()" aria-label="Konfirmasi kehadiran">
+  <div class="rsvp__inner">
+    <div class="rsvp__header">
+      <div class="rsvp__divider" aria-hidden="true">
+        <span class="rsvp__divider-diamond"></span>
+      </div>
+      <h2 class="rsvp__heading">Konfirmasi Kehadiran</h2>
+      <div class="rsvp__underline" aria-hidden="true"></div>
+      <p class="rsvp__subheading">Mohon konfirmasi kehadiran Anda</p>
+    </div>
+
+    @if (submissionState() === 'idle') {
+      <div class="rsvp__card">
+        <form class="rsvp__form" (ngSubmit)="submitRsvp()" #rsvpForm="ngForm">
+          <div class="rsvp__field-group">
+            <label class="rsvp__label" for="rsvp-name">Nama Lengkap</label>
+            <input
+              id="rsvp-name"
+              class="rsvp__input"
+              type="text"
+              [(ngModel)]="name"
+              name="name"
+              required
+              minlength="1"
+              maxlength="100"
+              placeholder="Masukkan nama lengkap"
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="rsvp__field-group">
+            <label class="rsvp__label" for="rsvp-email">Email / WhatsApp</label>
+            <input
+              id="rsvp-email"
+              class="rsvp__input"
+              type="text"
+              [(ngModel)]="email"
+              name="email"
+              required
+              minlength="1"
+              maxlength="200"
+              placeholder="nomor@contoh.com"
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="rsvp__field-group">
+            <label class="rsvp__label">Konfirmasi Kehadiran</label>
+            <div class="rsvp__toggle-group">
+              <button
+                type="button"
+                class="rsvp__toggle"
+                [class.rsvp__toggle--active]="attendanceStatus === 'ATTENDING'"
+                (click)="attendanceStatus = 'ATTENDING'"
+                [attr.aria-pressed]="attendanceStatus === 'ATTENDING'"
+              >
+                &#10004; Hadir
+              </button>
+              <button
+                type="button"
+                class="rsvp__toggle rsvp__toggle--absent"
+                [class.rsvp__toggle--active-absent]="attendanceStatus === 'NOT_ATTENDING'"
+                (click)="attendanceStatus = 'NOT_ATTENDING'"
+                [attr.aria-pressed]="attendanceStatus === 'NOT_ATTENDING'"
+              >
+                &#10006; Tidak Hadir
+              </button>
+            </div>
+          </div>
+
+          @if (attendanceStatus === 'ATTENDING') {
+            <div class="rsvp__field-group">
+              <label class="rsvp__label" for="rsvp-pax">Jumlah Tamu</label>
+              <div class="rsvp__pax-selector">
+                <button type="button" class="rsvp__pax-btn" (click)="decreasePax()" aria-label="Kurangi jumlah tamu">&minus;</button>
+                <span class="rsvp__pax-value">{{ paxCount }}</span>
+                <button type="button" class="rsvp__pax-btn" (click)="increasePax()" aria-label="Tambah jumlah tamu">&plus;</button>
+              </div>
+            </div>
+          }
+
+          <button
+            type="submit"
+            class="rsvp__submit"
+            [disabled]="!isFormValid() || submissionState() === 'submitting'"
+          >
+            Kirim Konfirmasi
+          </button>
+        </form>
+      </div>
+    }
+
+    @if (submissionState() === 'submitting') {
+      <div class="rsvp__card">
+        <div class="rsvp__loading">
+          <span class="rsvp__spinner" aria-hidden="true"></span>
+          <p class="rsvp__loading-text">Mengirim konfirmasi...</p>
+        </div>
+      </div>
+    }
+
+    @if (submissionState() === 'retrying') {
+      <div class="rsvp__card">
+        <div class="rsvp__retrying">
+          <span class="rsvp__spinner rsvp__spinner--retry" aria-hidden="true"></span>
+          <p class="rsvp__retrying-text">Mencoba ulang... ({{ retryCount() }}/{{ maxRetries }})</p>
+        </div>
+      </div>
+    }
+
+    @if (submissionState() === 'success') {
+      <div class="rsvp__card">
+        <div class="rsvp__success">
+          <p class="rsvp__success-icon" aria-hidden="true">&#10004;</p>
+          <h3 class="rsvp__success-title">Kehadiran Anda Tercatat</h3>
+          <p class="rsvp__success-text">Terima kasih atas konfirmasinya. Kami sangat menantikan kehadiran Anda.</p>
+          <button type="button" class="rsvp__reset-btn" (click)="resetForm()">Kirim Lagi</button>
+        </div>
+      </div>
+    }
+
+    @if (submissionState() === 'error') {
+      <div class="rsvp__card">
+        <div class="rsvp__error">
+          <p class="rsvp__error-icon" aria-hidden="true">&#9888;</p>
+          <p class="rsvp__error-text">{{ errorMessage() }}</p>
+          <button type="button" class="rsvp__submit" (click)="manualRetry()">Coba Lagi</button>
+        </div>
+      </div>
+    }
+
+    
+  </div>
+</section>

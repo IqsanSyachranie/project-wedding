@@ -1,0 +1,111 @@
+<section class="gallery" [class.gallery--revealed]="revealed()" aria-label="Galeri foto pernikahan">
+  <div class="gallery__inner">
+    <div class="gallery__header">
+      <div class="gallery__divider" aria-hidden="true">
+        <span class="gallery__divider-diamond"></span>
+      </div>
+      <h2 class="gallery__heading">Galeri Foto</h2>
+      <div class="gallery__underline" aria-hidden="true"></div>
+      <p class="gallery__subheading">Momen kebahagiaan yang kami abadikan</p>
+    </div>
+
+    @if (hasImages()) {
+      <div class="gallery__masonry">
+        @for (column of columns(); track $index) {
+          <div class="gallery__column">
+            @for (image of column; track image.id) {
+              <div
+                class="gallery__item"
+                [class]="aspectClass(image.aspectRatio)"
+                (click)="openLightboxByImage(image)"
+              >
+                <img
+                  [src]="image.imageUrl"
+                  [alt]="image.caption ?? 'Foto pernikahan'"
+                  loading="lazy"
+                  class="gallery__img"
+                />
+                <div class="gallery__overlay">
+                  @if (image.caption) {
+                    <p class="gallery__caption">{{ image.caption }}</p>
+                  }
+                </div>
+                <div class="gallery__shimmer"></div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      @if (canLoadMore()) {
+        <div class="gallery__more">
+          <button type="button" class="gallery__more-btn" (click)="loadMore()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M216,40H72A16,16,0,0,0,56,56V72H40A16,16,0,0,0,24,88V200a16,16,0,0,0,16,16H184a16,16,0,0,0,16-16V184h16a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM172,72a12,12,0,1,1-12,12A12,12,0,0,1,172,72Zm12,128H40V88H56v80a16,16,0,0,0,16,16H184Zm32-32H72V120.69l30.34-30.35a8,8,0,0,1,11.32,0L163.31,140,189,114.34a8,8,0,0,1,11.31,0L216,130.07V168Z"/></svg>
+            Lihat Lebih Banyak
+          </button>
+        </div>
+      }
+    } @else {
+      <div class="gallery__masonry">
+        @for (col of [0, 1, 2]; track col) {
+          <div class="gallery__column">
+            @for (_ of [1, 2]; track $index) {
+              <div class="gallery__item gallery__item--medium" aria-hidden="true">
+                <div class="gallery__placeholder"></div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Lightbox -->
+  @if (lightboxOpen()) {
+    <div class="gallery__lightbox" (click)="closeLightbox()">
+      <button
+        type="button"
+        class="gallery__lightbox-close"
+        (click)="closeLightbox(); $event.stopPropagation()"
+        aria-label="Tutup"
+      >
+        &times;
+      </button>
+
+      <button
+        type="button"
+        class="gallery__lightbox-nav gallery__lightbox-nav--prev"
+        (click)="prevImage(); $event.stopPropagation()"
+        aria-label="Foto sebelumnya"
+      >
+        &#10094;
+      </button>
+
+      @let currentImg = galleryImages()[lightboxIndex()];
+      @if (currentImg) {
+        <img
+          [src]="currentImg.imageUrl"
+          [alt]="currentImg.caption ?? 'Foto pernikahan'"
+          class="gallery__lightbox-img"
+          (click)="$event.stopPropagation()"
+        />
+        @if (currentImg.caption) {
+          <span class="gallery__lightbox-caption">{{ currentImg.caption }}</span>
+        }
+      }
+
+      <button
+        type="button"
+        class="gallery__lightbox-nav gallery__lightbox-nav--next"
+        (click)="nextImage(); $event.stopPropagation()"
+        aria-label="Foto berikutnya"
+      >
+        &#10095;
+      </button>
+
+      <div class="gallery__lightbox-counter">
+        {{ lightboxIndex() + 1 }} / {{ galleryImages().length }}
+      </div>
+    </div>
+  }
+</section>

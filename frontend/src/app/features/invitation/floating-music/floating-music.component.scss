@@ -1,0 +1,89 @@
+@use "styles/abstracts" as *;
+
+.floating-music {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-gold);
+  background: rgba($color-gold, 0.1);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s var(--ease-royal);
+  animation: fadeInUp 0.6s var(--ease-royal) both;
+
+  &:hover {
+    background: var(--color-gold);
+    transform: scale(1.08);
+    box-shadow: 0 8px 24px rgba($color-gold, 0.35);
+  }
+
+  &--playing {
+    .floating-music__disc {
+      animation: spin 4s linear infinite;
+    }
+  }
+
+  &__disc {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba($color-gold, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s ease;
+
+    &-inner {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--color-gold);
+      opacity: 0.6;
+    }
+  }
+
+  &__note {
+    position: relative;
+    z-index: 2;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+  }
+
+  &:hover &__note {
+    color: var(--color-cream);
+  }
+
+  &__ripple {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid var(--color-gold);
+    opacity: 0;
+    animation: ripplePing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ripplePing {
+  75%, 100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}

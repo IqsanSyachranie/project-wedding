@@ -1,0 +1,94 @@
+<section
+  class="couple"
+  [class.couple--revealed]="revealed()"
+  aria-label="Mempelai"
+>
+  <div class="couple__inner">
+    <!-- Section Title -->
+    <div class="couple__title-wrapper">
+      <div class="couple__divider" aria-hidden="true">
+        <span class="couple__divider-diamond"></span>
+      </div>
+      <h2 class="couple__heading">Mempelai</h2>
+      <div class="couple__underline" aria-hidden="true"></div>
+      <p class="couple__subheading">Dua hati, satu cinta, sejalan menuju bahtera pernikahan</p>
+    </div>
+
+    <!-- 3-column layout: Groom | Heart Photo | Bride -->
+    <div class="couple__grid">
+      <!-- Groom (Left) -->
+      <div class="couple__person couple__person--groom">
+        <h3 class="couple__person-name">{{ coupleInfo()?.groomName ?? 'Arif Prayoga' }}</h3>
+        <p class="couple__person-parents">{{ coupleInfo()?.groomParents ?? 'Putra dari Bapak Ahmad & Ibu Fatimah' }}</p>
+        @if (coupleInfo()?.groomSocialLink) {
+          <div class="couple__social">
+            <a [href]="coupleInfo()!.groomSocialLink" target="_blank" rel="noopener" class="couple__social-link" aria-label="Instagram mempelai pria">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"></path></svg>
+            </a>
+          </div>
+        }
+      </div>
+
+      <!-- Center Heart Photo -->
+      <div class="couple__heart-frame radial-glow">
+        <svg class="couple__heart-svg" viewBox="0 0 500 450" aria-hidden="true">
+          <defs>
+            <clipPath id="heartClip" clipPathUnits="userSpaceOnUse">
+              <path d="M250 450 L220 420 C120 320 0 260 0 150 C0 80 60 20 130 20 C170 20 210 40 250 80 C290 40 330 20 370 20 C440 20 500 80 500 150 C500 260 380 320 280 420 L250 450 Z"/>
+            </clipPath>
+            <linearGradient id="heartStroke" x1="0" x2="1">
+              <stop offset="0%" stop-color="var(--color-primary)" />
+              <stop offset="100%" stop-color="var(--color-gold)" />
+            </linearGradient>
+          </defs>
+          @if (coupleInfo()?.couplePhotoUrl) {
+            <image
+              [attr.href]="coupleInfo()!.couplePhotoUrl"
+              x="0"
+              y="0"
+              width="500"
+              height="450"
+              clip-path="url(#heartClip)"
+              preserveAspectRatio="xMidYMid slice"
+            />
+          } @else {
+            <rect x="0" y="0" width="500" height="450" fill="var(--color-dark)" clip-path="url(#heartClip)" />
+            <text x="250" y="225" text-anchor="middle" fill="var(--color-gold)" font-size="24" dy="0.3em" font-family="Libre Baskerville, serif">Foto Mempelai</text>
+          }
+          <path
+            d="M250 450 L220 420 C120 320 0 260 0 150 C0 80 60 20 130 20 C170 20 210 40 250 80 C290 40 330 20 370 20 C440 20 500 80 500 150 C500 260 380 320 280 420 L250 450 Z"
+            fill="none"
+            stroke="url(#heartStroke)"
+            stroke-width="12"
+          />
+        </svg>
+      </div>
+
+      <!-- Bride (Right) -->
+      <div class="couple__person couple__person--bride">
+        <h3 class="couple__person-name">{{ coupleInfo()?.brideName ?? 'Sari Dewi' }}</h3>
+        <p class="couple__person-parents">{{ coupleInfo()?.brideParents ?? 'Putri dari Bapak Budi & Ibu Sri' }}</p>
+        @if (coupleInfo()?.brideSocialLink) {
+          <div class="couple__social">
+            <a [href]="coupleInfo()!.brideSocialLink" target="_blank" rel="noopener" class="couple__social-link" aria-label="Instagram mempelai wanita">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"></path></svg>
+            </a>
+          </div>
+        }
+      </div>
+    </div>
+
+    @if (coupleInfo()?.bibleVerse) {
+      <blockquote class="couple__verse">
+        <p class="couple__verse-text">"{{ coupleInfo()?.bibleVerse }}"</p>
+        @if (coupleInfo()?.bibleReference) {
+          <cite class="couple__verse-ref">{{ coupleInfo()?.bibleReference }}</cite>
+        }
+      </blockquote>
+    }
+
+    <p class="couple__greeting">
+      {{ coupleInfo()?.greetingText ?? 'Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga apabila Bapak/Ibu/Saudara/i berkenan hadir memberikan doa restu' }}
+    </p>
+  </div>
+</section>

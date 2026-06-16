@@ -1,0 +1,68 @@
+<div class="editor-container">
+  <h2 class="editor-heading">Gift Addresses</h2>
+
+  @if (isLoading()) {
+    <div class="editor-loading">Loading...</div>
+  } @else {
+    @if (error()) {
+      <div class="editor-error">{{ error() }}</div>
+    }
+    @if (successMessage()) {
+      <div class="editor-success">{{ successMessage() }}</div>
+    }
+
+    @for (addr of addresses(); track addr.id) {
+      <div class="editor-card">
+        @if (editingId() === addr.id) {
+          <div class="editor-form">
+            <label>Label <input type="text" [(ngModel)]="editForm.label" /></label>
+            <label>Recipient Name <input type="text" [(ngModel)]="editForm.recipientName" /></label>
+            <label>Phone <input type="text" [(ngModel)]="editForm.phone" /></label>
+            <label>Address <textarea [(ngModel)]="editForm.address" rows="2"></textarea></label>
+            <label>Postal Code <input type="text" [(ngModel)]="editForm.postalCode" /></label>
+            <label>Note <textarea [(ngModel)]="editForm.note" rows="2"></textarea></label>
+            <label class="editor-checkbox">
+              <input type="checkbox" [(ngModel)]="editForm.isActive" /> Active
+            </label>
+            <div class="editor-actions">
+              <button type="button" (click)="onSaveEdit(addr.id)" [disabled]="isSaving()">Save</button>
+              <button type="button" class="btn-secondary" (click)="cancelEdit()">Cancel</button>
+            </div>
+          </div>
+        } @else {
+          <div class="editor-card-content">
+            <strong>{{ addr.label }}</strong>
+            <span>{{ addr.recipientName }}</span>
+            <span>{{ addr.address }}</span>
+            @if (addr.postalCode) { <span>{{ addr.postalCode }}</span> }
+            @if (addr.phone) { <span>{{ addr.phone }}</span> }
+            @if (addr.note) { <span class="editor-note">{{ addr.note }}</span> }
+            <span class="editor-badge" [class.active]="addr.isActive">{{ addr.isActive ? 'Active' : 'Inactive' }}</span>
+          </div>
+          <div class="editor-actions">
+            <button type="button" (click)="startEdit(addr)">Edit</button>
+            <button type="button" class="btn-danger" (click)="onDelete(addr.id)" [disabled]="isSaving()">Delete</button>
+          </div>
+        }
+      </div>
+    } @empty {
+      <p class="editor-empty">No gift addresses yet.</p>
+    }
+
+    <h3 class="editor-subheading">Add New Address</h3>
+    <div class="editor-form">
+      <label>Label <input type="text" [(ngModel)]="newForm.label" /></label>
+      <label>Recipient Name <input type="text" [(ngModel)]="newForm.recipientName" /></label>
+      <label>Phone <input type="text" [(ngModel)]="newForm.phone" /></label>
+      <label>Address <textarea [(ngModel)]="newForm.address" rows="2"></textarea></label>
+      <label>Postal Code <input type="text" [(ngModel)]="newForm.postalCode" /></label>
+      <label>Note <textarea [(ngModel)]="newForm.note" rows="2"></textarea></label>
+      <label class="editor-checkbox">
+        <input type="checkbox" [(ngModel)]="newForm.isActive" /> Active
+      </label>
+      <div class="editor-actions">
+        <button type="button" (click)="onAdd()" [disabled]="isSaving() || !isNewFormValid()">Add Address</button>
+      </div>
+    </div>
+  }
+</div>

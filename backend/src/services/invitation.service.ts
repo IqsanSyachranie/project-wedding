@@ -19,9 +19,56 @@ export class InvitationService {
 
   async getCashlessAccounts() {
     return prisma.cashlessAccount.findMany({
-      where: { invitationId: INVITATION_ID },
+      where: { invitationId: INVITATION_ID, isActive: true },
+      orderBy: { sortOrder: 'asc' },
+      select: {
+        id: true, bankName: true, accountNumber: true, accountHolderName: true,
+        bankLogoUrl: true, qrCodeUrl: true, sortOrder: true, isActive: true,
+      },
+    });
+  }
+
+  async getGiftAddresses() {
+    return prisma.giftAddress.findMany({
+      where: { invitationId: INVITATION_ID, isActive: true },
       orderBy: { createdAt: 'asc' },
-      select: { id: true, bankName: true, accountNumber: true, accountHolderName: true },
+    });
+  }
+
+  async getConfig() {
+    return prisma.invitationConfig.findUnique({
+      where: { invitationId: INVITATION_ID },
+    });
+  }
+
+  async getCoupleInfo() {
+    return prisma.coupleInfo.findFirst({
+      where: { invitationId: INVITATION_ID },
+    });
+  }
+
+  async getStoryItems() {
+    return prisma.storyItem.findMany({
+      where: { invitationId: INVITATION_ID },
+      orderBy: { sortOrder: 'asc' },
+      include: {
+        images: {
+          orderBy: { sortOrder: 'asc' },
+        },
+      },
+    });
+  }
+
+  async getGalleryImages() {
+    return prisma.galleryImage.findMany({
+      where: { invitationId: INVITATION_ID },
+      orderBy: { sortOrder: 'asc' },
+    });
+  }
+
+  async getPhilosophyConfig() {
+    return prisma.philosophyConfig.findUnique({
+      where: { invitationId: INVITATION_ID },
     });
   }
 }

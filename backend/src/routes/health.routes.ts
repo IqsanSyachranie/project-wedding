@@ -11,7 +11,8 @@ router.get("/", async (_req, res) => {
     res.json({
       status: "ok",
       database: "connected",
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      cache_test: "HEALTH_CACHE_TEST_12345"
     });
   } catch (error) {
     console.error("Database health check failed:", error);

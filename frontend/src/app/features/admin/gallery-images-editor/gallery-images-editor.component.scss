@@ -1,0 +1,9 @@
+@import '../story-items-editor/story-items-editor.component.scss';
+
+.gallery-preview {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  border: 1px solid #3d4451;
+}

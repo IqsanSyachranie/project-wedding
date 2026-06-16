@@ -1,0 +1,109 @@
+<div class="editor-container">
+  <h2 class="editor-heading">Invitation Config</h2>
+
+  @if (isLoading()) {
+    <div class="editor-loading">Loading...</div>
+  } @else {
+    @if (error()) {
+      <div class="editor-error">{{ error() }}</div>
+    }
+    @if (successMessage()) {
+      <div class="editor-success">{{ successMessage() }}</div>
+    }
+
+    <form (ngSubmit)="onSave()" class="editor-form">
+      <fieldset>
+        <legend>Hero Section</legend>
+        <label>
+          Couple Names
+          <input type="text" [(ngModel)]="form.heroCoupleNames" name="heroCoupleNames" required />
+        </label>
+        <label>
+          Opening Line
+          <input type="text" [(ngModel)]="form.heroOpeningLine" name="heroOpeningLine" required />
+        </label>
+        <label>
+          Wedding Date Text
+          <input type="text" [(ngModel)]="form.heroWeddingDateText" name="heroWeddingDateText" required />
+        </label>
+        <label>
+          Hero Background Image URL
+          <input type="text" [(ngModel)]="form.heroBackgroundImage" name="heroBackgroundImage" />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Wedding Date & Colors</legend>
+        <label>
+          Wedding Date & Time
+          <input type="datetime-local" [(ngModel)]="form.weddingDate" name="weddingDate" required />
+        </label>
+        <label>
+          Primary Color
+          <input type="color" [(ngModel)]="form.primaryColor" name="primaryColor" required />
+        </label>
+        <label>
+          Secondary Color
+          <input type="color" [(ngModel)]="form.secondaryColor" name="secondaryColor" required />
+        </label>
+        <label>
+          Background Color
+          <input type="color" [(ngModel)]="form.backgroundColor" name="backgroundColor" required />
+        </label>
+        <label>
+          Text Color
+          <input type="color" [(ngModel)]="form.textColor" name="textColor" required />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Locked Landing</legend>
+        <label class="editor-checkbox">
+          <input type="checkbox" [(ngModel)]="form.lockedLandingEnabled" name="lockedLandingEnabled" />
+          Enable Locked Landing Page
+        </label>
+        <label>
+          Unlock Button Text
+          <input type="text" [(ngModel)]="form.lockedLandingButtonText" name="lockedLandingButtonText" />
+        </label>
+        <label>
+          Landing Greeting
+          <textarea [(ngModel)]="form.lockedLandingGreeting" name="lockedLandingGreeting" rows="2"></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Music & Footer</legend>
+        <label class="editor-checkbox">
+          <input type="checkbox" [(ngModel)]="form.musicEnabled" name="musicEnabled" />
+          Enable Background Music
+        </label>
+        <label>
+          Music Button Position
+          <select [(ngModel)]="form.musicButtonPosition" name="musicButtonPosition">
+            <option value="bottom-right">Bottom Right</option>
+            <option value="bottom-left">Bottom Left</option>
+          </select>
+        </label>
+        <label>
+          Background Music URL
+          <input type="text" [(ngModel)]="form.backgroundMusicUrl" name="backgroundMusicUrl" />
+        </label>
+        <label>
+          Footer Greeting
+          <textarea [(ngModel)]="form.footerGreeting" name="footerGreeting" rows="3" required></textarea>
+        </label>
+        <label>
+          Footer Closing Text
+          <input type="text" [(ngModel)]="form.footerClosingText" name="footerClosingText" required />
+        </label>
+      </fieldset>
+
+      <div class="editor-actions">
+        <button type="submit" [disabled]="isSaving()">
+          {{ isSaving() ? 'Saving...' : 'Save Config' }}
+        </button>
+      </div>
+    </form>
+  }
+</div>

@@ -1,0 +1,22 @@
+
+    <div>
+      <h2 class="h4 color-amber mb-1">Location & Schedule</h2>
+      <p class="small opacity-75 mb-4">Manage venue coordinates and event timeline for the invitation.</p>
+
+      <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+          <button class="nav-link" [class.active]="activeTab() === 'venue'" (click)="activeTab.set('venue')">Venue Location</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" [class.active]="activeTab() === 'schedule'" (click)="activeTab.set('schedule')">Event Schedule</button>
+        </li>
+      </ul>
+
+      @if (activeTab() === 'venue') {
+        <app-venue-editor />
+      }
+      @if (activeTab() === 'schedule') {
+        <app-schedule-editor />
+      }
+    </div>
+  

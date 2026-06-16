@@ -2,34 +2,46 @@
 @use "tokens" as *;
 
 /// Gold Shine Effect
+/// NOTE: Animation runs a finite number of times (3) instead of infinite
+/// to avoid continuous main-thread repaints on every frame.
+/// will-change and translateZ(0) promote the element to its own compositor layer.
 @mixin gold-shine {
   background: linear-gradient(
     135deg,
-    $color-royal-gold 0%,
-    color.scale($color-royal-gold, $lightness: 15%) 50%,
-    $color-royal-gold 100%
+    $color-gold 0%,
+    color.scale($color-gold, $lightness: 15%) 50%,
+    $color-gold 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 4s var(--ease-royal) infinite;
+  animation: shimmer 4s var(--ease-royal) 3;
+  will-change: background-position;
+  transform: translateZ(0);
 }
 
 /// Paper Texture Overlay
 /// Uses --z-paper-texture custom property (default: 0) so consuming contexts
 /// can raise/lower it without touching this mixin.
+/// NOTE: Replaced expensive SVG feTurbulence with a lightweight CSS noise
+/// pattern to prevent GPU thrashing on high-resolution displays.
 @mixin paper-texture {
-  &::before {
+  &::after {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.04;
+    opacity: 0.035;
     pointer-events: none;
     z-index: var(--z-paper-texture, 0);
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    // Lightweight noise using a tiny repeating radial-gradient pattern.
+    // Much cheaper than feTurbulence which recalculates per pixel every frame.
+    background-image:
+      radial-gradient(circle at 40% 40%, rgba(0,0,0,0.15) 1px, transparent 1px),
+      radial-gradient(circle at 60% 60%, rgba(0,0,0,0.1) 1px, transparent 1px);
+    background-size: 4px 4px, 6px 6px;
   }
 }
 

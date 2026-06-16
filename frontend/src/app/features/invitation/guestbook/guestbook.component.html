@@ -1,0 +1,129 @@
+<section class="guestbook" [class.guestbook--revealed]="revealed()" aria-label="Buku tamu dan ucapan">
+  <div class="guestbook__inner">
+    <div class="guestbook__header">
+      <div class="guestbook__divider" aria-hidden="true">
+        <span class="guestbook__divider-diamond"></span>
+      </div>
+      <h2 class="guestbook__heading">Ucapan &amp; Doa</h2>
+      <div class="guestbook__underline" aria-hidden="true"></div>
+      <p class="guestbook__subheading">Kirim doa dan ucapan terbaik untuk mempelai</p>
+    </div>
+
+    <div class="guestbook__messages">
+      @if (isLoadingMessages()) {
+        <div class="guestbook__loading-card" aria-hidden="true"><div class="guestbook__skeleton guestbook__skeleton--avatar"></div><div class="guestbook__skeleton-lines"><div class="guestbook__skeleton guestbook__skeleton--name"></div><div class="guestbook__skeleton guestbook__skeleton--text"></div></div></div>
+        <div class="guestbook__loading-card" aria-hidden="true"><div class="guestbook__skeleton guestbook__skeleton--avatar"></div><div class="guestbook__skeleton-lines"><div class="guestbook__skeleton guestbook__skeleton--name"></div><div class="guestbook__skeleton guestbook__skeleton--text"></div></div></div>
+        <div class="guestbook__loading-card" aria-hidden="true"><div class="guestbook__skeleton guestbook__skeleton--avatar"></div><div class="guestbook__skeleton-lines"><div class="guestbook__skeleton guestbook__skeleton--name"></div><div class="guestbook__skeleton guestbook__skeleton--text"></div></div></div>
+      } @else if (messagesError() && messages().length === 0) {
+        <div class="guestbook__empty">
+          <p class="guestbook__empty-text">{{ messagesError() }}</p>
+          <button type="button" class="guestbook__submit" (click)="reloadMessages()">Coba Lagi</button>
+        </div>
+      } @else if (messages().length === 0) {
+        <div class="guestbook__empty">
+          <p class="guestbook__empty-text">Belum ada ucapan. Jadilah yang pertama!</p>
+        </div>
+      } @else {
+        @for (msg of messages(); track msg.id) {
+          <div class="guestbook__card">
+            <div class="guestbook__avatar" aria-hidden="true">{{ msg.name.charAt(0) }}</div>
+            <div class="guestbook__body">
+              <p class="guestbook__name">{{ msg.name }}</p>
+              <p class="guestbook__text">{{ msg.message }}</p>
+            </div>
+          </div>
+        }
+      }
+    </div>
+
+    @if (!showForm() && submissionState() !== 'success' && submissionState() !== 'retrying') {
+      <button type="button" class="guestbook__form-toggle" (click)="toggleForm()">
+        &#9998; Tulis Ucapan
+      </button>
+    }
+
+    @if (showForm() && submissionState() !== 'success' && submissionState() !== 'retrying') {
+      <div class="guestbook__form-card">
+        <form class="guestbook__form" (ngSubmit)="submitGuestbook()" #gbForm="ngForm">
+          <div class="guestbook__field-group">
+            <label class="guestbook__label" for="gb-name">Nama</label>
+            <input
+              id="gb-name"
+              class="guestbook__input"
+              type="text"
+              [(ngModel)]="newName"
+              name="newName"
+              required
+              minlength="1"
+              maxlength="100"
+              placeholder="Nama Anda"
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="guestbook__field-group">
+            <label class="guestbook__label" for="gb-message">Ucapan & Doa</label>
+            <textarea
+              id="gb-message"
+              class="guestbook__input guestbook__textarea"
+              [(ngModel)]="newMessage"
+              name="newMessage"
+              required
+              minlength="1"
+              maxlength="2000"
+              placeholder="Tuliskan ucapan dan doa untuk mempelai"
+              rows="3"
+            ></textarea>
+          </div>
+
+          @if (submissionState() === 'error') {
+            <p class="guestbook__error-text">{{ errorMessage() }}</p>
+          }
+
+          <div class="guestbook__actions">
+            <button type="button" class="guestbook__cancel-btn" (click)="toggleForm()">Batal</button>
+            <button
+              type="submit"
+              class="guestbook__submit"
+              [disabled]="!isFormValid() || submissionState() === 'submitting' || submissionState() === 'retrying'"
+            >
+              @if (submissionState() === 'submitting') {
+                Mengirim...
+              } @else {
+                Kirim Ucapan
+              }
+            </button>
+          </div>
+        </form>
+      </div>
+    }
+
+    @if (submissionState() === 'retrying') {
+      <div class="guestbook__form-card">
+        <div class="guestbook__retrying">
+          <span class="guestbook__spinner" aria-hidden="true"></span>
+          <p class="guestbook__retrying-text">Mencoba ulang... ({{ retryCount() }}/{{ maxRetries }})</p>
+        </div>
+      </div>
+    }
+
+    @if (submissionState() === 'success') {
+      <div class="guestbook__success">
+        <p class="guestbook__success-icon" aria-hidden="true">&#10004;</p>
+        <p class="guestbook__success-text">Ucapan Anda telah terkirim!</p>
+      </div>
+    }
+
+    @if (submissionState() === 'error') {
+      <div class="guestbook__form-card">
+        <div class="guestbook__error">
+          <p class="guestbook__error-icon" aria-hidden="true">&#9888;</p>
+          <p class="guestbook__error-text">{{ errorMessage() }}</p>
+          <button type="button" class="guestbook__submit" (click)="manualRetry()">Coba Lagi</button>
+        </div>
+      </div>
+    }
+
+    
+  </div>
+</section>

@@ -2,11 +2,6 @@
 // These presets are implemented in JS via shared-utils/motion-utils.ts.
 // The CSS classes below (.animate-fade-up, .delay-N, etc.) remain as
 // fallbacks for when JS is disabled or anime.js fails to load.
-// Motion preset mapping (see motion-utils.ts):
-//   ceremonial: duration 800ms, ease inOutCubic, parallax 30px
-//   gentle:     duration 600ms, ease outCubic,   parallax 15px
-//   functional: duration 300ms, ease outCubic,   parallax 0px
-//   reduced:    duration 1ms,   instant set (prefers-reduced-motion)
 
 @keyframes shimmer {
   0% { background-position: 0% center; }
@@ -35,23 +30,62 @@
   100% { transform: scale(1); opacity: 1; }
 }
 
+// Design Knowledge v2 animations
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 0.8; transform: scale(1.02); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes float-particle {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.2; }
+  25%       { transform: translate(20px, -30px) rotate(90deg); opacity: 0.4; }
+  50%       { transform: translate(-10px, -50px) rotate(180deg); opacity: 0.3; }
+  75%       { transform: translate(-30px, -20px) rotate(270deg); opacity: 0.5; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .animate-fade-up {
   opacity: 0;
   animation: royalFadeInUp 0.8s var(--ease-royal) forwards;
 }
 
 // Use this class to re-trigger the fade-up on dynamically shown elements.
-// Toggle: remove .animate-fade-up-reset, force reflow, re-add .animate-fade-up.
 .animate-fade-up-reset {
   opacity: 1;
   animation: none;
 }
 
 .animate-float {
-  animation: subtleFloat 4s ease-in-out infinite;
+  animation: subtleFloat 6s ease-in-out infinite;
 }
 
-// Staggered delay classes (over-engineered)
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+
+.animate-float-particle {
+  animation: float-particle 20s ease-in-out infinite;
+}
+
+.fade-in-animated {
+  animation: fadeInUp 1s ease-out forwards;
+  opacity: 0;
+}
+
+// Staggered delay classes
 @for $i from 1 through 10 {
   .delay-#{$i} {
     animation-delay: #{$i * 150}ms;

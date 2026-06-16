@@ -1,0 +1,56 @@
+<footer class="footer" [class.footer--revealed]="revealed()" aria-label="Penutup undangan">
+  <div class="footer__inner">
+    <div class="footer__divider" aria-hidden="true">
+      <span class="footer__divider-diamond"></span>
+    </div>
+
+    <div class="footer__grid">
+      <!-- Kolom 1: Nama & Tagline -->
+      <div class="footer__col">
+        <p class="footer__names">
+          {{ coupleInfo()?.groomName ?? 'Arif Prayoga' }} &amp; {{ coupleInfo()?.brideName ?? 'Sari Dewi' }}
+        </p>
+        <p class="footer__tagline">
+          {{ config()?.footerGreeting ?? 'Merupakan suatu kehormatan dan kebahagiaan apabila Bapak/Ibu/Saudara/i berkenan hadir memberikan doa restu kepada kami' }}
+        </p>
+      </div>
+
+      <!-- Kolom 2: Quote Box -->
+      <div class="footer__col">
+        <div class="footer__quote-box">
+          <p class="footer__quote-text">"Cinta sejati adalah anugerah terindah yang menjadikan dua jiwa menjadi satu."</p>
+          <p class="footer__quote-source">&mdash; Keluarga Besar</p>
+        </div>
+      </div>
+
+      <!-- Kolom 3: Kontak & Social -->
+      <div class="footer__col">
+        <p class="footer__contact-label">Hubungi Kami</p>
+        <div class="footer__socials">
+          @if (coupleInfo()?.groomSocialLink) {
+            <a [href]="coupleInfo()!.groomSocialLink" target="_blank" rel="noopener" class="footer__social" aria-label="Instagram mempelai pria">
+              <span aria-hidden="true">&#9733;</span>
+            </a>
+          }
+          @if (coupleInfo()?.brideSocialLink) {
+            <a [href]="coupleInfo()!.brideSocialLink" target="_blank" rel="noopener" class="footer__social" aria-label="Instagram mempelai wanita">
+              <span aria-hidden="true">&#9733;</span>
+            </a>
+          }
+        </div>
+        <button type="button" class="footer__scroll-top" (click)="scrollToTop()" aria-label="Kembali ke atas">
+          &#8593;
+        </button>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__thanks">
+        {{ config()?.footerClosingText ?? "Wassalamu'alaikum Warahmatullahi Wabarakatuh" }}
+      </p>
+      <p class="footer__privacy">
+        Undangan ini bersifat pribadi dan tidak diindeks mesin pencari
+      </p>
+    </div>
+  </div>
+</footer>

@@ -42,6 +42,8 @@ const scheduleController = {
     try {
       const validation = createScheduleSchema.safeParse(req.body);
       if (!validation.success) {
+        console.error('Schedule validation failed:', JSON.stringify(validation.error.format(), null, 2));
+        console.error('Request body:', JSON.stringify(req.body));
         return res.status(400).json({
           error: {
             code: 'VALIDATION_ERROR',

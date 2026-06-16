@@ -1,0 +1,35 @@
+<div class="editor-container">
+  <h2 class="editor-heading">Philosophy & Doa</h2>
+
+  @if (isLoading()) {
+    <div class="editor-loading">Loading...</div>
+  } @else {
+    @if (error()) {
+      <div class="editor-error">{{ error() }}</div>
+    }
+    @if (successMessage()) {
+      <div class="editor-success">{{ successMessage() }}</div>
+    }
+
+    <form (ngSubmit)="onSave()" class="editor-form">
+      <label>
+        Quote Text
+        <textarea [(ngModel)]="form.quoteText" name="quoteText" rows="4" required></textarea>
+      </label>
+      <label>
+        Quote Meaning (optional)
+        <textarea [(ngModel)]="form.quoteMeaning" name="quoteMeaning" rows="3"></textarea>
+      </label>
+      <label>
+        Prayer Text
+        <textarea [(ngModel)]="form.prayerText" name="prayerText" rows="4" required></textarea>
+      </label>
+
+      <div class="editor-actions">
+        <button type="submit" [disabled]="isSaving()">
+          {{ isSaving() ? 'Saving...' : 'Save Config' }}
+        </button>
+      </div>
+    </form>
+  }
+</div>

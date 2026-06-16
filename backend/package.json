@@ -4,7 +4,8 @@
   "description": "Backend for Project Dynamic Single-Page Untuk Undangan Pernikahan with CMS Angular, Express, Prisma ORM, dan MySQL",
   "main": "index.js",
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "dev": "tsx watch src/app.ts"
   },
   "keywords": [],
   "author": "Iqsan Syachranie",

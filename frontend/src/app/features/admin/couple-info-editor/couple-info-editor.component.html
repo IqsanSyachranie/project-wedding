@@ -1,0 +1,71 @@
+<div class="editor-container">
+  <h2 class="editor-heading">Couple Info</h2>
+
+  @if (isLoading()) {
+    <div class="editor-loading">Loading...</div>
+  } @else {
+    @if (error()) {
+      <div class="editor-error">{{ error() }}</div>
+    }
+    @if (successMessage()) {
+      <div class="editor-success">{{ successMessage() }}</div>
+    }
+
+    <form (ngSubmit)="onSave()" class="editor-form">
+      <label>
+        Groom Name
+        <input type="text" [(ngModel)]="form.groomName" name="groomName" required />
+      </label>
+      <label>
+        Bride Name
+        <input type="text" [(ngModel)]="form.brideName" name="brideName" required />
+      </label>
+      <label>
+        Groom Parents
+        <input type="text" [(ngModel)]="form.groomParents" name="groomParents" required />
+      </label>
+      <label>
+        Bride Parents
+        <input type="text" [(ngModel)]="form.brideParents" name="brideParents" required />
+      </label>
+      <label>
+        Couple Photo URL (Heart Frame)
+        <input type="text" [(ngModel)]="form.couplePhotoUrl" name="couplePhotoUrl" />
+      </label>
+      <label>
+        Groom Photo URL
+        <input type="text" [(ngModel)]="form.groomPhotoUrl" name="groomPhotoUrl" />
+      </label>
+      <label>
+        Bride Photo URL
+        <input type="text" [(ngModel)]="form.bridePhotoUrl" name="bridePhotoUrl" />
+      </label>
+      <label>
+        Groom Social Link
+        <input type="text" [(ngModel)]="form.groomSocialLink" name="groomSocialLink" />
+      </label>
+      <label>
+        Bride Social Link
+        <input type="text" [(ngModel)]="form.brideSocialLink" name="brideSocialLink" />
+      </label>
+      <label>
+        Bible Verse
+        <textarea [(ngModel)]="form.bibleVerse" name="bibleVerse" rows="2"></textarea>
+      </label>
+      <label>
+        Bible Reference
+        <input type="text" [(ngModel)]="form.bibleReference" name="bibleReference" />
+      </label>
+      <label>
+        Greeting Text
+        <textarea [(ngModel)]="form.greetingText" name="greetingText" rows="3" required></textarea>
+      </label>
+
+      <div class="editor-actions">
+        <button type="submit" [disabled]="isSaving()">
+          {{ isSaving() ? 'Saving...' : 'Save Info' }}
+        </button>
+      </div>
+    </form>
+  }
+</div>

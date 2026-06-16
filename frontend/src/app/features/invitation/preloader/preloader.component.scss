@@ -1,0 +1,131 @@
+@use "styles/abstracts" as *;
+
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--color-cream);
+  background-image:
+    radial-gradient(circle at 50% 40%, rgba(184, 138, 59, 0.1), transparent 60%),
+    linear-gradient(180deg, #fcf7ef 0%, #f0e6d6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.8s var(--ease-royal);
+
+  &--exit {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.preloader-content {
+  @include center-column(480px);
+  padding: $space-sm;
+}
+
+// ── Javanese Motif & Monogram ──
+
+.preloader-motif {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: $space-sm;
+  opacity: 0;
+  animation: royalFadeInUp 1s var(--ease-royal) 0.2s forwards;
+
+  &__ornament {
+    font-size: 1.25rem;
+    color: var(--color-gold);
+    opacity: 0.5;
+    line-height: 1;
+
+    &.top-ornament {
+      margin-bottom: $space-xs;
+    }
+
+    &.bottom-ornament {
+      margin-top: $space-xs;
+    }
+  }
+}
+
+.preloader-monogram {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &__initial {
+    font-family: $font-family-heading;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  &__amp {
+    font-size: 1.5rem;
+    color: var(--color-gold);
+    opacity: 0.7;
+    animation: subtleFloat 4s ease-in-out infinite;
+  }
+}
+
+.preloader-subtitle {
+  font-family: $font-family-accent;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-style: italic;
+  color: var(--color-dark);
+  opacity: 0;
+  animation: royalFadeInUp 1s var(--ease-royal) 0.6s forwards;
+  margin-bottom: $space-md;
+}
+
+// ── Progress Bar ──
+
+.preloader-progress-track {
+  width: 100%;
+  max-width: 280px;
+  height: 4px;
+  background-color: var(--color-cream);
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 0;
+  animation: royalFadeInUp 0.8s var(--ease-royal) 0.4s forwards;
+  margin-bottom: 1rem;
+}
+
+.preloader-progress-fill {
+  height: 100%;
+  background-color: var(--color-gold);
+  border-radius: 2px;
+  transition: width 0.3s var(--ease-royal);
+
+  .preloader-overlay--slow-network & {
+    background-color: var(--color-primary);
+  }
+}
+
+.preloader-status {
+  font-family: $font-family-body;
+  font-size: 0.875rem;
+  color: var(--color-dark);
+  opacity: 0;
+  animation: royalFadeInUp 0.8s var(--ease-royal) 0.7s forwards;
+  min-height: 1.25rem;
+}
+
+// Accessibility: skip decorative animation when reduced motion preferred
+@media (prefers-reduced-motion: reduce) {
+  .preloader-motif,
+  .preloader-subtitle,
+  .preloader-progress-track,
+  .preloader-status {
+    animation: none;
+    opacity: 1;
+  }
+
+  .preloader-monogram__amp {
+    animation: none;
+  }
+}

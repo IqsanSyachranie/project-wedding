@@ -1,0 +1,45 @@
+<section class="philosophy" [class.philosophy--revealed]="revealed()" aria-label="Filosofi dan doa pernikahan">
+  <div class="philosophy__inner">
+    <div class="philosophy__title-wrapper">
+      <div class="philosophy__divider" aria-hidden="true">
+        <span class="philosophy__divider-diamond"></span>
+      </div>
+      <h2 class="philosophy__heading">Filosofi &amp; Doa</h2>
+      <div class="philosophy__underline" aria-hidden="true"></div>
+    </div>
+
+    @if (philosophyConfig()) {
+      <div class="philosophy__quote-box">
+        <div class="philosophy__ornament-inline" aria-hidden="true">&#8220;</div>
+        <p class="philosophy__quote-text">
+          {{ philosophyConfig()!.quoteText }}
+        </p>
+        <div class="philosophy__ornament-inline" aria-hidden="true">&#8221;</div>
+      </div>
+
+      @if (philosophyConfig()!.quoteMeaning) {
+        <p class="philosophy__quote-meaning">{{ philosophyConfig()!.quoteMeaning }}</p>
+      }
+
+      <p class="philosophy__prayer">
+        {{ philosophyConfig()!.prayerText }}
+      </p>
+    } @else {
+      <div class="philosophy__quote-box">
+        <div class="philosophy__ornament-inline" aria-hidden="true">&#8220;</div>
+        <p class="philosophy__quote-text">
+          Mikul dhuwur mendhem jero<br>
+          Artinya menjunjung tinggi kebaikan dan<br>
+          memendam keburukan demi keharmonisan
+        </p>
+        <div class="philosophy__ornament-inline" aria-hidden="true">&#8221;</div>
+      </div>
+
+      <p class="philosophy__prayer">
+        Semoga Allah SWT meridhoi pernikahan ini,<br>
+        menjadikannya langgeng, penuh berkah,<br>
+        dan menjadi keluarga yang sakinah, mawaddah, wa rahmah.
+      </p>
+    }
+  </div>
+</section>
